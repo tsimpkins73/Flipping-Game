@@ -1,14 +1,6 @@
 import React from 'react'
 
 export default class StartPage extends React.Component {
-    constructor(props){
-        super(props, context);
-    
-        this.state = {
-            }
-    
-     
-    }
     
     render() {
                return ( <section class="mainSection landing">
@@ -19,6 +11,7 @@ export default class StartPage extends React.Component {
                 <button class="start" onClick={this.props.startGame} id="startGameButton" name="Start Game" value="Start Game">New
                     Game</button>
 
-    </section>
-        )
-    }
+    </section>)
+    
+    };
+}

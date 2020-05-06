@@ -1,10 +1,14 @@
 'use strict';
 import React from 'react';
-
+import StartPage from './components/StartPage'
+import GameView from './components/GameView'
+import BuyItemModal from     './components/BuyItemModal'
+import LocationModal from './components/LocationModal'
+import LoanModal from './components/LoanModal'
 
 export default class App extends React.Component {
 constructor(props){
-    super(props, context);
+    super(props);
 
     this.state = {
     items: [
@@ -142,7 +146,7 @@ constructor(props){
     currentLocation: 'Business District',
     funds: 500,
     loan: 500,
-    currentDay: 0,
+    currentDay: 1,
     selectedQuantity: 0,
     currentTotal: 0,
     itemToBuy:{
@@ -150,248 +154,206 @@ constructor(props){
         price: 0,
         quantity: 0,
             },
+    playerItems: {
+
+            },
     isGameViewActive: false,
     isStartPageActive: true,
-    isEndPageActive: false,
-    isItemModalActive: false,
+    isFinishGameModalActive: false,
+    isBuyItemModalActive: false,
+    isSellItemModalActive: false,
     isLoanModalActive: false,
-    isLocationModalActive: false
+    isLocationModalActive: false,
+    isGameViewBlurred: false,
+    isFinishButtonActive: false,
+    isLocationButtonActive: false,
+    isPayLoanButtonActive: false
         };
 }
 
 makePrice = (min, max) => {
-    price = Math.floor(Math.random() * (max - min)) + min;
+    let price = Math.floor(Math.random() * (max - min)) + min;
     return price;
 }
 
 
-renderItems = () => {
-    console.log("Items are rendering");
-    var itemPrice = ''
-    for (let i = 0; i < this.state.items.length; i++) {
-        var currentItem = this.state.items[i];
-        var priceMin = currentItem.minPrice;
-        var priceMax = currentItem.maxPrice;
-        function currentItemPrice(priceMin, priceMax) {
-            return Math.floor(Math.random() * (priceMax - priceMin)) + priceMin;
-        };
-        var itemPrice = currentItemPrice(priceMin, priceMax);
-        this.state.items[i].currentPrice= itemPrice;
-                $(`.items`).append(`<div class="left" id="${currentItem.name}">${currentItem.quantity} ${currentItem.name}</div>
-<div class="right">${itemPrice}</div>
-<div class="dotted"></div></br>`);
-    }
-}
 
 
 startGame = () => {
-        $(document).on('click', 'button#startGameButton', function (event) {
-            console.log('Click')
-            this.state.funds = 500;
-            this.state.loan = 500;
-            this.state.currentDay = 0;
-            $('.gameContainer').removeClass('hidden');
-            $('.mainSection').addClass('hidden');
-            renderGame();
-            
-});
+this.setState({ funds : 500, 
+ loan : 500,
+  currentDay : 1 ,
+  currentLocation:'Business District' ,
+   isStartPageActive : false ,
+    isGameViewActive : true,
+isLocationButtonActive: true,
+isPayLoanButtonActive: true });
+    this.renderItems();
 }
 
-
-renderGame = () => {
-const funds = this.state.funds;
-const loan = this.state.loan;
-const day = this.state.currentDay;
-const location = this.state.currentLocation;
-$(`.gameContainer`).empty();
-$(`.gameContainer`).append(
-    `<section class="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: ${day}/30</section>
-    <section class="location">${location}</section>
-    <section class="items"></section>
-     <section class="gameButtons">
-     <button class= "loan" type="submit" name="payLoan" value="Pay Loan">Pay Loan</button>
-     <button class= "move" type="submit" name="move" value="Move">MOVE</button></section>`
-);
 
 //checkLoan();
 //checkDay();
-    renderItems();
-}
 
 /*function checkLoan(){
     if (${this.state.loan} === 0){
     $('button.loan').classList.add('hidden');
     }
-}*/
-
-selectItem = () => {
-$(document).on('click', 'div.left', function (event) {
+}
+openItemModal = (item) => {
+    this.setState({isSellItemModalActive:true})
     renderItemModal();
     openModal();
+};
+*/
+
+
+openBuyItemModal = (item) => {
+        const itemName = item;
+const itemToBuy= this.state.items.find(item => (item.name === itemName));
+this.setState({itemToBuy: itemToBuy,
+    isBuyItemModalActive: true, 
+    isGameViewBlurred: true, 
 })
-}
-
-renderItemModal = () => {
-    const itemName = event.target.id;
-    console.log('item name is: ' + itemName);
-    const currentItem = this.state.items.find(o => o.name === itemName);
-    this.state.itemToBuy.name = currentItem.name;
-    this.state.itemToBuy.price = currentItem.currentPrice;
-    console.log(currentItem.name);
-    console.log(currentItem.currentPrice);
-    $('.modal').addClass('itemModal');
-    $('.modal').empty();
-    $('.modal').html(`<div class="itemInfo" id="${currentItem.name}"><h2>${currentItem.name} Price:$${currentItem.currentPrice}</h2>
-    <button class="buy" id="${currentItem.name}" name="buy" value = "buy">BUY</button>
-    <button class="sell" id="${currentItem.name}" name="sell" value = "sell">SELL</button> 
-    </div>`)
-}
-
-buyItemButton = () => {
-    $(document).on('click', 'button.buy', function (event) {
-        console.log('BUY!');
-        const itemName = event.target.id;
-    console.log(itemName);
-       // renderBuyItemModal();
-       renderBuyItemModal();
         
-});
-}
+};
 
-renderBuyItemModal = () => {
-    const itemName = event.target.id;
-    console.log('item name is: ' + itemName);
-    const currentItem = this.state.items.find(i => i.name === itemName);
-    console.log(currentItem.name);
-    console.log(currentItem.currentPrice);
-    //$('.modal').addClass('itemModal');
-    $('.modal').empty();
-    $('.modal').html(`<div class="itemInfo"><h2 class="itemName">${currentItem.name} Price:$${currentItem.currentPrice}</h2>
-    <section class="counter">How many do you want?
-    <div class= "counterInfo">
-    <div class="counterWindow">${this.state.selectedQuantity}</div><div class="counterButtons">
-    <button class="incrButton" name ="increase" value = "increase">+</button>
-    <button class="decrButton" name ="decrease" value = "decrease">-</button>
-     </div>
-     <div class= "counterInfo">
-    <button class="ok" id="ok" name="ok" value="ok">OK</button> 
-    <button class="cancel" id="cancel" name="cancel" value="cancel">CANCEL</button> 
-    </div>
-    </section>`)
-}
 
-openModal = () => {
-    modal.style.display = "block";
-}
+openSellItemModal = (item) => {
+    const itemName = item;
+const itemToBuy= this.state.items.find(item => (item.name === itemName));
+this.setState({itemToBuy: itemToBuy,
+isSellItemModalActive: true, 
+isGameViewBlurred: true, 
+})
+    
+};
 
-cancelButton = () => {
-    $(document).on('click', 'button.cancel', function (event) {
-        console.log('cancel');
-        $('.modal').removeClass('itemModal');
-        modal.style.display = "none";
-        this.state.selectedQuantity = 0;
-        
-});
-}
+
+cancelButton = (modalName) => {
+    const modalToClose = 'is' + modalName + 'Active';
+    this.setState({[modalToClose]: false})
+    this.setState({selectedQuantity : 0})
+ };
+
 
 
 
 itemCounter = () => {
     if(this.state.currentTotal + this.state.itemToBuy.price > this.state.funds){
         console.log('NOT ENOUGH MONEY');
-    $('.incrButton').addClass('hidden');
+        this.setState({isIncreaseButtonActive: false})
 } if(this.state.selectedQuantity === 0){
-    $('.decrButton').addClass('hidden');
-  }
+    this.setState({isDecreaseButtonActive: false})
+}
+};
 
-else{
-    $('.incrButton').removeClass('hidden')
-    $('.incrButton').removeClass('hidden')
-    }
+increaseBuyQuantity = () => {
+    let newTotal = this.state.currentTotal + this.state.itemToBuy.price;
+    let newQuantity = this.state.selectedQuantity++
+    this.setState({currentTotal: newTotal});
+    this.state({selectedQuantity: newQuantity});
+    console.log(this.state.selectedQuantity); 
+    console.log(this.state.currentTotal); 
+};
+
+decreaseQuantity = () => {
+        let newTotal = this.state.currentTotal - this.state.itemToBuy.price;
+    this.state.currentTotal = newTotal;
+    this.state.selectedQuantity--;
+    console.log(this.state.selectedQuantity); 
+    console.log(this.state.currentTotal); 
+};
+
+buyItemOKButton = (item, cost) => {
+    this.setStates({
+        funds: this.state.funds - cost,
+    });
+            if(this.state.playerItems.find(matchingItem => matchingItem.name == item.name)){
+                const newQuantity = this.matchingItem.quantity + item.quantity;
+                const newPrice= (this.matchingItem.price + item.price)/newQuantity;
+
+                this.setState({
+                    [this.matchingItem.quantity]: newQuantity,
+                    [this.matchingItem.price]: newPrice
+                });
+
+        }else{   
+        const playerItems = this.state.playerItems.concat(item);
+        return {
+          playerItems
+        };
+      };
 }
 
-increaseQuantity = () => {
-    if(this.state.currentTotal + this.state.itemToBuy.price > this.state.funds){
-        console.log('NOT ENOUGH MONEY')
-    $('button.incrButton').addClass('hidden')}
-    $(document).on('click', 'button.incrButton', function (event) {
-            console.log('Increase'); 
-        let newTotal = this.state.currentTotal + this.state.itemToBuy.price;
+increaseSellQuantity = () => {
+    let newTotal = this.state.currentTotal + this.state.itemToSell.price;
     this.state.currentTotal = newTotal;
     this.state.selectedQuantity++;
     console.log(this.state.selectedQuantity); 
     console.log(this.state.currentTotal); 
-    $('.counterWindow').html(`${this.state.selectedQuantity}`);
-    itemCounter();
-});
+};
+
+sellItemOKButton = (item, cost) => {
+    this.setState({
+        funds: this.state.funds + cost,
+    });
+    if(this.state.playerItems.find(matchingItem => matchingItem.name == item.name)){
+        const newQuantity = this.matchingItem.quantity - item.quantity;
+                this.setState({
+                    [this.matchingItem.quantity]: newQuantity
+                });
 }
-
-decreaseQuantity = () => {
-    $(document).on('click', 'button.decrButton', function (event) {
-       
-        console.log('Decrease'); 
-        let newTotal = this.state.currentTotal - this.state.itemToBuy.price;
-    this.state.currentTotal = newTotal;
-    this.state.selectedQuantity--;
-    $('.counterWindow').html(`${this.state.selectedQuantity}`);
-    itemCounter();
-});
-}
+};
 
 
-/*
-buyItems = () => {
-this.stateItems();
-    removeMoney();
-}
-
-
-checkDay = () => {
-if (${this.state.currentDay} === 30){
-    $('.button.move').html('Finish');
-    $('button.move').classList.add('finish');
-    $('button.finish').classList.remove('move');
-}
-}
-
-/*loanButton = () => {
-    $(document).on('click', 'button.loan', function (event) {
-      renderLoanModal();  
-}
-
-renderLoanModal = () => {
+openPayLoanModal = () => {
     const loan = this.state.loan;
-
-    <div id="loanModal" class="loanModal">
-
-   <div class="loan-modal-content">
-        <p></p>
-  </div>
-
-}
-
-
-
-getLoanInfo = () => {
-    const loan = this.state.loan;
-
-}
+this.setState({
+    isPayLoanModalActive: true, 
+isGameViewBlurred: true
+})
+    
+};
 
 payLoan = (payment) => {
+const newLoanAmount = this.state.loan - payment;
+const newFunds = this.state.funds - payment;
+this.setState({
+    loan: newLoanAmount,
+    funds: newFunds,
+    isPayLoanModalActive: false, 
+isGameViewBlurred: false
+})
+if(newLoanAmount == 0){
+    this.setState({
+        isPayLoanButtonActive: false
+    })
+}
 
 }
 
-sellItem = () => {
+changeLocationButton = () => {
+    this.setState({
+        isLocationModalActive: true, 
+    isGameViewBlurred: true, 
+    })
+    
+};
+ 
 
-}*/
 
-moveButton = () => {
-    $(document).on('click', 'button.move', function (event) {
-    renderLocationsModal();
-    openModal();
-});
- }
 
+ finishGameButton = () => {
+    const finalScore = this.state.funds - this.state.loan;
+this.setState({
+    finalScore: finalScore,
+    isFinishGameModalActive: true, 
+isGameViewBlurred: true
+})
+    
+};
+/* 
 renderLocationsModal = () => {
  $('.modal').addClass('itemModal');
  $('.modal').empty(); 
@@ -405,21 +367,7 @@ renderLocationsModal = () => {
     $('.itemInfo').append(`<div class= "counterInfo"><button class="cancel" id="cancel" name="cancel" value="cancel">CANCEL</button></div>`)
 }
 
-
-changeLocation = () => {
-    $(document).on('click', '.location-item', function (event) {
-        const locationName = event.target.id;
-       this.state.currentLocation = locationName;
-       console.log(locationName);
-changeDay();
-renderGame();
-$('.modal').removeClass('itemModal');
-$('.modal').empty();
-        modal.style.display = "none";
-        console.log(this.state.currentLocation);
-});
-}
-
+ */
 changeDay = () => {
     ++this.state.currentDay;
     console.log(this.state.currentDay);
@@ -429,25 +377,15 @@ changeDay = () => {
 }
 
 
-
-
-
-
-/* 
-listenEvents() {
-    renderGame();
-    startGame();
-    selectItem();
-    buyItemButton();
-    cancelButton();
-    itemCounter();
-    increaseQuantity();
-    decreaseQuantity();
-    moveButton();
-    changeLocation();
+changeLocation = (locationName) => {
+    const newLocationName = locationName;
+    this.setState.currentLocation = newLocationName;
+    this.changeDay();
+this.cancelButton(Location);
+     console.log(this.state.currentLocation);
 }
 
-$(listenEvents); */
+
 
 
 render() {
@@ -465,12 +403,9 @@ render() {
         <br></br>
         <StartPage isActive={this.state.isStartPageActive} startButton ={this.startButton} />
 
-        <GameView isActive={this.state.isGameViewActive} items={this.state.items} moveButton ={this.moveButton}  />
+        <GameView {...this.props} isActive={this.state.isGameViewActive} openBuyItemModal={this.openBuyItemModal} itemToBuy={this.state.itemToBuy} openSellItemModal={this.openSellItemModal} openLoanModal={this.openLoanModal} openLocationModal={this.openLocationModal} items={this.state.items} playerItems={this.state.playerItems} moveButton ={this.moveButton}  />
         
     </section>
-    <ItemModal isActive={this.state.isItemModalActive} />
-    <LoanModal isActive={this.state.isLoanModalActive} />
-    <LocationModal isActive={this.state.isLocationModalActive} />
     </div>
     );
 }

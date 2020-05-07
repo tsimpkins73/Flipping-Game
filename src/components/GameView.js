@@ -2,7 +2,7 @@ import React from 'react'
 import BuyItemModal from './BuyItemModal.js'
 import LoanModal from './LoanModal.js'
 import LocationModal from './LocationModal.js'
-
+import ItemLine from './ItemLine.js'
 
 export default class GameView extends React.Component {
     constructor(props) {
@@ -28,28 +28,14 @@ let loan = this.props.loan;
 let day = this.props.currentDay;
 let location = this.props.currentLocation;
 
+
+
 return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >         
     <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30</section>
     <section className="location">{location}</section>
     <section className="items">
 {items.map(function (item) {
-    let priceMin = item.minPrice;
-    let priceMax = item.maxPrice;
-    function currentItemPrice(priceMin, priceMax) {
-        return Math.floor(Math.random() * (priceMax - priceMin)) + priceMin;
-    };
-    let itemPrice = currentItemPrice(priceMin, priceMax);
-
-    
-       return <div> 
-       <div className="left" id={item.name}>{item.quantity} {item.name}</div>
-    <div className="right">${itemPrice} 
-    <button className= "buy" onClick={() => this.openBuyItemModal(item)} name="buy" value="Buy">Buy</button>
-    <button className= {(() => this.doesPlayerHaveThis(item)) ? 'hidden' : 'sell'} onClick={() => this.openSellItemModal(item)} name="sell" value="Sell">Sell</button>
-    </div>
-    <div className="dotted"></div>
-    </div>
-    
+   return <ItemLine item={item} openBuyItemModal={this.props.openBuyItemModal} itemToBuy={this.props.itemToBuy} openSellItemModal={this.props.openSellItemModal} /> 
 })}
     </section>
      <section className="gameButtons">

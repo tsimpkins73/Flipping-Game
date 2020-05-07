@@ -407,7 +407,7 @@ export default class App extends React.Component {
             <div class="container">
                 <StartPage isActive={this.state.isStartPageActive} startButton={this.startGame} />
 
-                <GameView {...this.props} isActive={this.state.isGameViewActive} openBuyItemModal={this.openBuyItemModal} itemToBuy={this.state.itemToBuy} openSellItemModal={this.openSellItemModal} isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} openLocationModal={this.openLocationModal} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} />
+                <GameView {...this.props} isActive={this.state.isGameViewActive} openBuyItemModal={() => this.openBuyItemModal} itemToBuy={this.state.itemToBuy} openSellItemModal={this.openSellItemModal} isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} openLocationModal={this.openLocationModal} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} />
             </div>
         );
     }

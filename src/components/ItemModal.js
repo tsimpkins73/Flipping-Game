@@ -14,7 +14,7 @@ export default class ItemModal extends React.Component {
     render() {
         let currentItem = this.props.items.find(o => o.name === itemName);
         
-               return ( <div class="itemInfo"><h2 class="itemName">${currentItem.name} Price:$${currentItem.currentPrice}</h2>
+               return ( <div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 class="itemName">${currentItem.name} Price:$${currentItem.currentPrice}</h2>
                <section class="counter">How many do you want?
                <div class= "counterInfo">
                <div class="counterWindow">${this.state.selectedQuantity}</div><div class="counterButtons">

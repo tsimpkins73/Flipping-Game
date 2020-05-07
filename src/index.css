@@ -26,6 +26,8 @@ h1 {
 
 .left,
 .right {
+    display: inline-grid;
+    grid-template-columns: 1fr .5fr;
     padding: 1px 0.5em;
     background: #fff;
     float: right;
@@ -94,9 +96,7 @@ h2{
 .itemInfo {
     background-color:rgba(0, 112, 19, 0.9);
     margin: auto;
-    /* 15% from the top and centered */
     padding: 20% 5%;
-    vertical-align: center;
     border: 1px solid #888;
     box-shadow: 2px 2px 2px black;
     width: 80%;

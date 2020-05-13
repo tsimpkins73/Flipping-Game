@@ -27,6 +27,8 @@ openSellItemModal = (item) => {
 let loan = this.props.loan;
 let day = this.props.currentDay;
 let location = this.props.currentLocation;
+let openBuyItemModal=this.props.openBuyItemModal;
+let openSellItemModal=this.props.openSellItemModal;
 
 
 
@@ -35,7 +37,7 @@ return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >
     <section className="location">{location}</section>
     <section className="items">
 {items.map(function (item) {
-   return <ItemLine item={item} openBuyItemModal={this.props.openBuyItemModal} itemToBuy={this.props.itemToBuy} openSellItemModal={this.props.openSellItemModal} /> 
+   return <ItemLine item={item} openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} /> 
 })}
     </section>
      <section className="gameButtons">

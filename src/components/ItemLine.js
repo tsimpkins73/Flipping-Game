@@ -13,9 +13,10 @@ export default class ItemLine extends React.Component {
 doesPlayerHaveThis = (item) =>{
       return this.props.playerItems.find(a => (a.name === item.name))
 }
-openBuyItemModal = (item) => {
+openBuyItemModal = (item, price) => {
     console.log('Open');
-        this.props.openBuyItemModal(item);
+    console.log(price);
+        this.props.openBuyItemModal(item, price);
       };
 
 openSellItemModal = (item) => {
@@ -35,8 +36,8 @@ openSellItemModal = (item) => {
        return <div> 
        <div className="left" id={item.name}>{item.quantity} {item.name}</div>
     <div className="right">${itemPrice} 
-    <button className= "buy" onClick={() =>this.openBuyItemModal(item.name)} name="buy" value="Buy">Buy</button>
-    <button className= {(() => this.doesPlayerHaveThis(item)) ? 'hidden' : 'sell'} onClick={() => this.openSellItemModal(item)} name="sell" value="Sell">Sell</button>
+    <button className= "buy" onClick={() =>this.openBuyItemModal(item.name, itemPrice)} name="buy" value="Buy">Buy</button>
+    <button className= {(() => this.doesPlayerHaveThis(item)) ? 'hidden' : 'sell'} onClick={() => this.openSellItemModal(item, itemPrice)} name="sell" value="Sell">Sell</button>
     </div>
     <div className="dotted"></div>
     </div>

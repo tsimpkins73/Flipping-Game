@@ -69,7 +69,8 @@ h1 {
 .location,
 .gameButtons,
 .playerInfo,
-.items {
+.items,
+.locationsContainer {
     margin: auto;
     padding: 3%;
     text-align: center;
@@ -87,6 +88,23 @@ h2{
 
 .location {
     background: rgb(180, 219, 118);
+
+}
+
+.locationList {
+    display: inline-grid;
+    grid-template-columns: 1fr .5fr;
+    padding: 1px 0.5em;
+    float: left;
+    clear: both;
+}
+
+.locationSelect {
+    display: inline-grid;
+    grid-template-columns: 1fr .5fr;
+    padding: 1px 0.5em;
+    float: right;
+    clear: both;
 }
 
 .hidden {
@@ -118,6 +136,15 @@ button.start {
     margin-top:0;
     z-index:0;
 
+}
+
+.selectLocationButton{
+    background: rgb(180, 219, 118);
+    margin: auto;
+    padding: 3%;
+    text-align: center;
+    font-size: 1.5em;
+    border: 0;
 }
 
 button.incrButton, button.decrButton{

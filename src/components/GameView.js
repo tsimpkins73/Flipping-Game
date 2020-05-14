@@ -44,7 +44,7 @@ return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >
      <button className={(this.props.isPayLoanButtonActive) ? 'loan' : 'hidden'} type="submit" name="payLoan" value="Pay Loan">Pay Loan</button>
      <button className= "move" onClick={this.props.moveButton} name="move" value="Move">MOVE</button></section>
      <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} />
-    <LoanModal isActive={this.props.isLoanModalActive} />
+    <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} />
     <LocationModal isActive={this.props.isLocationModalActive} locations= {this.props.locations} />
      </section>
         )

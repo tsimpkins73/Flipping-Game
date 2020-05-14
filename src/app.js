@@ -17,7 +17,7 @@ export default class App extends React.Component {
                     minPrice: 50,
                     maxPrice: 200,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -25,7 +25,7 @@ export default class App extends React.Component {
                     minPrice: 50,
                     maxPrice: 500,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -33,7 +33,7 @@ export default class App extends React.Component {
                     minPrice: 100,
                     maxPrice: 1000,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -41,7 +41,7 @@ export default class App extends React.Component {
                     minPrice: 30,
                     maxPrice: 120,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -49,7 +49,7 @@ export default class App extends React.Component {
                     minPrice: 50,
                     maxPrice: 200,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -57,7 +57,7 @@ export default class App extends React.Component {
                     minPrice: 10,
                     maxPrice: 100,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -65,7 +65,7 @@ export default class App extends React.Component {
                     minPrice: 30,
                     maxPrice: 150,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -73,7 +73,7 @@ export default class App extends React.Component {
                     minPrice: 150,
                     maxPrice: 600,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -81,7 +81,7 @@ export default class App extends React.Component {
                     minPrice: 100,
                     maxPrice: 700,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -89,7 +89,7 @@ export default class App extends React.Component {
                     minPrice: 30,
                     maxPrice: 1500,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
 
                 {
@@ -97,7 +97,7 @@ export default class App extends React.Component {
                     minPrice: 100,
                     maxPrice: 2000,
                     quantity: 0,
-                    currentPrice: ''
+                    currentPrice: 0
                 },
             ],
 
@@ -215,20 +215,22 @@ export default class App extends React.Component {
     */
 
 
-    openBuyItemModal = (item) => {
+    openBuyItemModal = (item, price) => {
         console.log(item)
-        if(!item){
-            let item= this.state.itemToBuy
+        console.log(price)
+        if (!item) {
+            let item = this.state.itemToBuy
         }
 
         const itemName = item;
-        const itemToBuy = this.state.items.find(item => (item.name === itemName));
+        const newItem = this.state.items.find(item => (item.name === itemName));
+        const itemToBuy = { name: newItem.name, quantity: 0, price: price }
         this.setState({
             itemToBuy: itemToBuy,
             isBuyItemModalActive: true,
             isGameViewBlurred: true,
-        })
-
+        });
+        console.log(itemToBuy);
     };
 
 

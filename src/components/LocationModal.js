@@ -8,10 +8,10 @@ export default class LocationModal extends React.Component {
 
                return ( <div class="itemInfo"><h2 class="itemName">Select a New Location</h2>
                               {locations.map(function (location) {    
-       return <div> 
-       <div className="left" id={location.name}>$${location.name}</div>
-    <div className="right"> 
-    <button className= "Select location button" onClick={() => this.openLocationModal(location)} name={location.name} value="Select">Select</button></div>
+       return <div className="locationsContainer"> 
+       <div className="locationList" id={location.name}>{location.name}</div>
+    <div className="locationSelect"> 
+    <button className= "selectLocationButton" onClick={() => this.openLocationModal(location)} name={location.name} value="Select">Select</button></div>
     <div className="dotted"></div>
     </div>
     

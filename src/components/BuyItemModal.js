@@ -5,7 +5,7 @@ export default class BuyItemModal extends React.Component {
     render() {
         let itemToBuy = this.props.itemToBuy;
         
-               return ( <div class="itemInfo"><h2 class="itemName">{itemToBuy.name} Price:${itemToBuy.price}</h2>
+               return ( <div class="itemInfo"><h2 class="itemName">{this.props.itemToBuy.name} Price:${this.props.itemToBuy.price}</h2>
                <section class="counter">How many do you want?
                <div class= "counterInfo">
                <div class="counterWindow">{this.props.selectedQuantity}</div><div class="counterButtons">

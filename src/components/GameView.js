@@ -32,7 +32,8 @@ let openSellItemModal=this.props.openSellItemModal;
 
 
 
-return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >         
+return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >    
+<section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
     <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30</section>
     <section className="location">{location}</section>
     <section className="items">
@@ -46,6 +47,7 @@ return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >
      <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} />
     <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} />
     <LocationModal isActive={this.props.isLocationModalActive} locations= {this.props.locations} />
+    </section>
      </section>
         )
     }

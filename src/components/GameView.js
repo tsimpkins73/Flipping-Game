@@ -17,6 +17,11 @@ openBuyItemModal = (item) => {
         this.props.openBuyItemModal(item);
       };
 
+      openLoanModal = () => {
+        console.log('Loan');
+            this.props.openLoanModal();
+          };
+
 openSellItemModal = (item) => {
           this.props.openSellItemModal(item);
         };
@@ -29,10 +34,10 @@ let day = this.props.currentDay;
 let location = this.props.currentLocation;
 let openBuyItemModal=this.props.openBuyItemModal;
 let openSellItemModal=this.props.openSellItemModal;
+let cancelButton = this.props.cancelButton;
 
 
-
-return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >    
+return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >    
 <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
     <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30</section>
     <section className="location">{location}</section>
@@ -42,12 +47,13 @@ return ( <section className={(this.props.isActive) ? 'gameview' : 'hidden'} >
 })}
     </section>
      <section className="gameButtons">
-     <button className={(this.props.isPayLoanButtonActive) ? 'loan' : 'hidden'} type="submit" name="payLoan" value="Pay Loan">Pay Loan</button>
+     <button className={(this.props.isPayLoanButtonActive) ? 'loan' : 'hidden'} onClick={() =>this.openLoanModal()} name="payLoan" value="Pay Loan">Pay Loan</button>
      <button className= "move" onClick={this.props.moveButton} name="move" value="Move">MOVE</button></section>
-     <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} />
-    <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} />
-    <LocationModal isActive={this.props.isLocationModalActive} locations= {this.props.locations} />
-    </section>
+     </section>
+     <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} />
+    <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} cancelButton={this.props.cancelButton} />
+    <LocationModal isActive={this.props.isLocationModalActive} locations= {this.props.locations} cancelButton={this.props.cancelButton} />
+    
      </section>
         )
     }

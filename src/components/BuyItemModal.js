@@ -2,6 +2,17 @@ import React from 'react'
 
 export default class BuyItemModal extends React.Component {
       
+    constructor(props) {
+        super(props);
+        
+        this.cancelButton = this.cancelButton.bind(this);
+    }
+
+    cancelButton = () => {
+            this.props.cancelButton();
+          };
+        
+
     render() {
         let itemToBuy = this.props.itemToBuy;
         
@@ -14,7 +25,7 @@ export default class BuyItemModal extends React.Component {
                 </div>
                 <div class= "counterInfo">
                <button class="ok" id="ok" name="ok" value="ok">OK</button> 
-               <button class="cancel" id="cancel" name="cancel" value="cancel">CANCEL</button> 
+               <button class="cancel" id="cancel" name="cancel"  onClick={() => this.cancelButton}  value="cancel">CANCEL</button> 
                </div>
                </div>
                </section>

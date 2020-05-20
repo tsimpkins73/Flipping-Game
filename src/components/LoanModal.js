@@ -5,7 +5,7 @@ export default class LoanModal extends React.Component {
     render() {
         
         
-        return ( <div class="itemInfo"><h2 class="itemName">You currently owe ${this.props.loan}</h2>
+        return ( <div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 class="itemName">You currently owe ${this.props.loan}</h2>
                <section class="counter">How much do you want to pay on your loan?
                <div class= "counterInfo">
                <div class="counterWindow">${this.props.selectedQuantity}</div><div class="counterButtons">

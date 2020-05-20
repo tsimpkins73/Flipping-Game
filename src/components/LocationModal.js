@@ -6,7 +6,7 @@ export default class LocationModal extends React.Component {
 
         let locations = this.props.locations;
 
-               return ( <div class="itemInfo"><h2 class="itemName">Select a New Location</h2>
+               return ( <div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 class="itemName">Select a New Location</h2>
                               {locations.map(function (location) {    
        return <div className="locationsContainer"> 
        <div className="locationList" id={location.name}>{location.name}</div>

@@ -248,12 +248,14 @@ export default class App extends React.Component {
 
     cancelButton = () => {
 
-        this.setState({ isBuyItemModalActive: false,
+        this.setState({
+            isBuyItemModalActive: false,
             isSellItemModalActive: false,
             isLoanModalActive: false,
             isLocationModalActive: false,
             isGameViewBlurred: false,
-            selectedQuantity: 0 })
+            selectedQuantity: 0
+        })
     };
 
 
@@ -272,15 +274,14 @@ export default class App extends React.Component {
         let newTotal = this.state.currentTotal + this.state.itemToBuy.price;
         let newQuantity = this.state.selectedQuantity++
         this.setState({ currentTotal: newTotal });
-        this.state({ selectedQuantity: newQuantity });
         console.log(this.state.selectedQuantity);
         console.log(this.state.currentTotal);
     };
 
     decreaseQuantity = () => {
         let newTotal = this.state.currentTotal - this.state.itemToBuy.price;
-        this.state.currentTotal = newTotal;
-        this.state.selectedQuantity--;
+        let newQuantity=this.state.selectedQuantity--;
+        this.setState({ currentTotal: newTotal });
         console.log(this.state.selectedQuantity);
         console.log(this.state.currentTotal);
     };
@@ -330,7 +331,7 @@ export default class App extends React.Component {
     openLoanModal = () => {
         const loan = this.state.loan;
         this.setState({
-            isPayLoanModalActive: true,
+            isLoanModalActive: true,
             isGameViewBlurred: true
         })
 
@@ -342,7 +343,7 @@ export default class App extends React.Component {
         this.setState({
             loan: newLoanAmount,
             funds: newFunds,
-            isPayLoanModalActive: false,
+            isLoanModalActive: false,
             isGameViewBlurred: false
         })
         if (newLoanAmount == 0) {
@@ -353,7 +354,7 @@ export default class App extends React.Component {
 
     }
 
-    changeLocationButton = () => {
+    openLocationModal = () => {
         this.setState({
             isLocationModalActive: true,
             isGameViewBlurred: true,
@@ -413,7 +414,9 @@ export default class App extends React.Component {
             <div class="container">
                 <StartPage isActive={this.state.isStartPageActive} startButton={this.startGame} />
 
-                <GameView {...this.props} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive} openBuyItemModal={this.openBuyItemModal} itemToBuy={this.state.itemToBuy} openSellItemModal={this.openSellItemModal} isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} openLocationModal={this.openLocationModal} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} cancelButton={this.cancelButton} />
+                <GameView {...this.props} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive} 
+                openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} buyItemOKButton={this.buyItemOKButton}
+                 openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItemOKButton={this.sellItemOKButton} isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} openLocationModal={this.openLocationModal} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} cancelButton={this.cancelButton} isBuyItemModalActive={this.state.isBuyItemModalActive} isSellItemModalActive={this.state.isSellItemModalActive} isLoanModalActive={this.state.isLoanModalActive} isLocationModalActive={this.state.isLocationModalActive} />
             </div>
         );
     }

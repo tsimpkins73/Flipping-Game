@@ -2,14 +2,37 @@ import React from 'react'
 
 export default class BuyItemModal extends React.Component {
 
+    constructor(props)  {
+        super(props);
+
+        this.state = {
+            count: 0,
+            item: {}
+        };;
+
+    }
+
+    componentWillReceiveProps(nextProps){
+              this.setState({
+      item: nextProps.itemToBuy
+  });
+
+}
+
+
+
     increaseButton = () => {
-        console.log('CANCEL');
-        this.props.increaseBuyQuantity();
+        console.log('INCREASE');
+        this.setState(({ count }) => ({
+            count: count + 1
+          }));
     };
 
     decreaseButton = () => {
-        console.log('CANCEL');
-        this.props.decreaseQuantity();
+        console.log('DECREASE');
+        this.setState(({ count }) => ({
+            count: count - 1
+          }));
     };
 
 
@@ -21,15 +44,18 @@ export default class BuyItemModal extends React.Component {
 
 
     render() {
-        let itemToBuy = this.props.itemToBuy;
-
-        return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.props.itemToBuy.name} Price:${this.props.itemToBuy.price}</h2>
+        console.log(this.props.itemToBuy);
+        console.log(this.state.item);
+        let newTotal = this.state.item.price * this.state.count;
+        
+        return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
             <section className="counter">How many do you want?
                <div className="counterInfo">
-                    <div className="counterWindow">{this.props.selectedQuantity}</div><div className="counterButtons">
-                        <button className="incrButton" name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
-                        <button className="decrButton" name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
+                    <div className="counterWindow">{this.state.count}</div><div className="counterButtons">
+                        <button className={(newTotal + this.state.item.price < this.props.funds) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
+                        <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
                     </div>
+                    Total: {newTotal}
                     <div className="counterInfo">
                         <button className="ok" id="ok" name="ok" value="ok">OK</button>
                         <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>

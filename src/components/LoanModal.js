@@ -1,7 +1,46 @@
 import React from 'react'
 
 export default class LoanModal extends React.Component {
-      
+    constructor(props)  {
+        super(props);
+
+        this.state = {
+            count: 0,
+            item: {}
+        };;
+
+    }
+
+    componentWillReceiveProps(nextProps){
+              this.setState({
+      item: nextProps.itemToBuy
+  });
+
+}
+
+
+
+    increaseButton = () => {
+        console.log('INCREASE');
+        this.setState(({ count }) => ({
+            count: count + 1
+          }));
+    };
+
+    decreaseButton = () => {
+        console.log('DECREASE');
+        this.setState(({ count }) => ({
+            count: count - 1
+          }));
+    };
+
+
+    cancelButton = () => {
+        console.log('CANCEL');
+        this.props.cancelButton();
+    };  
+
+
     render() {
         
         
@@ -9,8 +48,8 @@ export default class LoanModal extends React.Component {
                <section class="counter">How much do you want to pay on your loan?
                <div class= "counterInfo">
                <div class="counterWindow">${this.props.selectedQuantity}</div><div class="counterButtons">
-               <button class="incrButton" name ="increase" value = "increase">+</button>
-               <button class="decrButton" name ="decrease" value = "decrease">-</button>
+               <button className={(this.state.count < this.props.funds) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
+                        <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
                 </div>
                 <div class= "counterInfo">
                <button class="ok" id="ok" name="ok" value="ok">OK</button> 

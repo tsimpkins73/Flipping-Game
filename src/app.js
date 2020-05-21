@@ -249,12 +249,13 @@ export default class App extends React.Component {
     cancelButton = () => {
 
         this.setState({
+            selectedQuantity: 0,
+            currentTotal: 0,
             isBuyItemModalActive: false,
             isSellItemModalActive: false,
             isLoanModalActive: false,
             isLocationModalActive: false,
-            isGameViewBlurred: false,
-            selectedQuantity: 0
+            isGameViewBlurred: false
         })
     };
 
@@ -272,7 +273,7 @@ export default class App extends React.Component {
 
     increaseBuyQuantity = () => {
         let newTotal = this.state.currentTotal + this.state.itemToBuy.price;
-        let newQuantity = this.state.selectedQuantity++
+       this.state.selectedQuantity++;
         this.setState({ currentTotal: newTotal });
         console.log(this.state.selectedQuantity);
         console.log(this.state.currentTotal);
@@ -280,7 +281,7 @@ export default class App extends React.Component {
 
     decreaseQuantity = () => {
         let newTotal = this.state.currentTotal - this.state.itemToBuy.price;
-        let newQuantity=this.state.selectedQuantity--;
+        this.state.selectedQuantity--;
         this.setState({ currentTotal: newTotal });
         console.log(this.state.selectedQuantity);
         console.log(this.state.currentTotal);

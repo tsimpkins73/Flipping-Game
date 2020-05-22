@@ -5,16 +5,22 @@ export default class LoanModal extends React.Component {
         super(props);
 
         this.state = {
-            count: 0,
+            count: 500,
             item: {}
         };;
 
     }
 
     componentWillReceiveProps(nextProps){
-              this.setState({
-      item: nextProps.itemToBuy
+              if(this.props.funds<this.props.loan){
+                  this.setState({
+      count: this.props.funds
   });
+}if(this.props.funds>this.props.loan){
+    this.setState({
+        count: this.props.loan
+    });
+}
 
 }
 
@@ -47,7 +53,7 @@ export default class LoanModal extends React.Component {
         return ( <div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 class="itemName">You currently owe ${this.props.loan}</h2>
                <section class="counter">How much do you want to pay on your loan?
                <div class= "counterInfo">
-               <div class="counterWindow">${this.props.selectedQuantity}</div><div class="counterButtons">
+               <div class="counterWindow">${this.state.count}</div><div class="counterButtons">
                <button className={(this.state.count < this.props.funds) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
                         <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
                 </div>

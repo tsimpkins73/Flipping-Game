@@ -35,6 +35,10 @@ export default class BuyItemModal extends React.Component {
           }));
     };
 
+    addItem = (item, quantity, totalPrice) => {
+        console.log('ADD ITEM ' + item + " "  + quantity + " " + totalPrice);
+        this.props.addItem(item, quantity, totalPrice);
+    };
 
     cancelButton = () => {
         console.log('CANCEL');
@@ -57,7 +61,7 @@ export default class BuyItemModal extends React.Component {
                     </div>
                     Total: {newTotal}
                     <div className="counterInfo">
-                        <button className="ok" id="ok" name="ok" value="ok">OK</button>
+                        <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.addItem(this.state.item, this.state.count, newTotal)}>OK</button>
                         <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>
                     </div>
                 </div>

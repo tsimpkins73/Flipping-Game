@@ -287,21 +287,33 @@ export default class App extends React.Component {
         console.log(this.state.currentTotal);
     };
 
-    buyItemOKButton = (item, cost) => {
-        this.setStates({
-            funds: this.state.funds - cost,
+
+
+    addItem = (item, quantity, totalPrice) => {
+        this.setState({
+            funds: this.state.funds - totalPrice,
         });
         if (this.state.playerItems.find(matchingItem => matchingItem.name == item.name)) {
-            const newQuantity = this.matchingItem.quantity + item.quantity;
-            const newPrice = (this.matchingItem.price + item.price) / newQuantity;
+            const newQuantity = this.matchingItem.quantity + quantity;
+            const newPrice = (this.matchingItem.price + totalPrice) / newQuantity;
 
+            const newItem = {
+                name: item.name,
+                price: newPrice,
+                quantity: newQuantity,
+                            }
             this.setState({
                 [this.matchingItem.quantity]: newQuantity,
                 [this.matchingItem.price]: newPrice
             });
 
         } else {
-            const playerItems = this.state.playerItems.concat(item);
+            const newItem = {
+                name: item.name,
+                price: totalPrice,
+                quantity: quantity,
+                            }
+            const playerItems = this.state.playerItems.concat(newItem);
             return {
                 playerItems
             };
@@ -416,7 +428,7 @@ export default class App extends React.Component {
                 <StartPage isActive={this.state.isStartPageActive} startButton={this.startGame} />
 
                 <GameView {...this.props} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive} 
-                openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} buyItemOKButton={this.buyItemOKButton}
+                openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} addItem={this.addItem}
                  openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItemOKButton={this.sellItemOKButton} isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} openLocationModal={this.openLocationModal} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} cancelButton={this.cancelButton} isBuyItemModalActive={this.state.isBuyItemModalActive} isSellItemModalActive={this.state.isSellItemModalActive} isLoanModalActive={this.state.isLoanModalActive} isLocationModalActive={this.state.isLocationModalActive} />
             </div>
         );

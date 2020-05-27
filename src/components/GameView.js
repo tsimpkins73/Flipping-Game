@@ -53,7 +53,7 @@ return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'}
      <button className={(this.props.isPayLoanButtonActive) ? 'loan' : 'hidden'} onClick={() =>this.openLoanModal()} name="payLoan" value="Pay Loan">Pay Loan</button>
      <button className= "move" onClick={() => this.moveButton()} name="move" value="Move">MOVE</button></section>
      </section>
-     <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} increaseBuyQuantity={this.props.increaseBuyQuantity} decreaseQuantity={this.props.decreaseQuantity} />
+     <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} increaseBuyQuantity={this.props.increaseBuyQuantity} decreaseQuantity={this.props.decreaseQuantity} addItem={this.props.addItem} />
     <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} cancelButton={cancelButton} increaseSellQuantity={this.props.increaseSellQuantity} decreaseQuantity={this.props.decreaseQuantity} />
     <LocationModal isActive={this.props.isLocationModalActive} locations= {this.props.locations} cancelButton={cancelButton} />
     

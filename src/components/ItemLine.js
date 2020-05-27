@@ -41,6 +41,6 @@ openSellItemModal = (item) => {
     </div>
     <div className="dotted"></div>
     </div>
-    
+     
     }
 }

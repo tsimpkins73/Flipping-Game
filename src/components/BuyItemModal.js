@@ -35,9 +35,10 @@ export default class BuyItemModal extends React.Component {
           }));
     };
 
-    addItem = (item, quantity, totalPrice) => {
-        console.log('ADD ITEM ' + item + " "  + quantity + " " + totalPrice);
-        this.props.addItem(item, quantity, totalPrice);
+    addItem = (quantity, totalPrice) => {
+        let itemToBuy = this.state.item;
+        console.log('ADD ITEM ' + itemToBuy + " "  + quantity + " " + totalPrice);
+        this.props.addItem(itemToBuy, quantity, totalPrice);
     };
 
     cancelButton = () => {
@@ -49,7 +50,7 @@ export default class BuyItemModal extends React.Component {
 
     render() {
         console.log(this.props.itemToBuy);
-        console.log(this.state.item);
+        let item = this.state.item;
         let newTotal = this.state.item.price * this.state.count;
         
         return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
@@ -61,7 +62,7 @@ export default class BuyItemModal extends React.Component {
                     </div>
                     Total: {newTotal}
                     <div className="counterInfo">
-                        <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.addItem(this.state.item, this.state.count, newTotal)}>OK</button>
+                        <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.addItem(this.state.count, newTotal)}>OK</button>
                         <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>
                     </div>
                 </div>

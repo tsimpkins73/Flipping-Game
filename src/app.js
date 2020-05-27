@@ -290,10 +290,13 @@ export default class App extends React.Component {
 
 
     addItem = (item, quantity, totalPrice) => {
-        this.setState({
+        console.log(item);
+         this.setState({
             funds: this.state.funds - totalPrice,
         });
-        if (this.state.playerItems.find(matchingItem => matchingItem.name == item.name)) {
+                let items = this.state.playerItems;
+        let itemIsInBag = items.filter(item => item.name.indexOf(item.name) >= 0);
+               if (itemIsInBag) {
             const newQuantity = this.matchingItem.quantity + quantity;
             const newPrice = (this.matchingItem.price + totalPrice) / newQuantity;
 

@@ -41,6 +41,12 @@ export default class LoanModal extends React.Component {
     };
 
 
+    payLoan = (payment) => {
+                console.log('PAY ON LOAN $' + payment);
+        this.props.payLoan(payment);
+    };
+
+
     cancelButton = () => {
         console.log('CANCEL');
         this.props.cancelButton();
@@ -58,9 +64,9 @@ export default class LoanModal extends React.Component {
                         <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
                 </div>
                 <div class= "counterInfo">
-               <button class="ok" id="ok" name="ok" value="ok">OK</button> 
-               <button class="cancel" id="cancel" name="cancel" value="cancel">CANCEL</button> 
-               </div>
+                <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.payLoan(this.state.count)}>OK</button>
+                        <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>
+</div>
                </div>
                </section>
 </div>

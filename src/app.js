@@ -288,8 +288,15 @@ export default class App extends React.Component {
     };
 
     doesPlayerHaveThis = (item) =>{
-        return this.state.playerItems.find(a => (a.name === item.name))
-  }
+        Object.keys(this.state.playerItems).forEach(key => {
+            if (key.name === item.name) {
+                   return true
+                }
+                else{
+                    return false;
+                }
+            })
+           }
 
     addItem = (item, quantity, totalPrice) => {
         console.log(item);
@@ -300,29 +307,26 @@ export default class App extends React.Component {
                 let items = this.state.playerItems;
                 let matchingItem = items.find(matchingItem => matchingItem.name == item.name);
                        
-                const newQuantity = this.matchingItem.quantity + quantity;
-            const newPrice = (this.matchingItem.price + totalPrice) / newQuantity;
+                let newQuantity = matchingItem.quantity + quantity;
+            let newPrice = (matchingItem.price + totalPrice) / newQuantity;
 
-            const newItem = {
+            let newItem = {
                 name: item.name,
                 price: newPrice,
                 quantity: newQuantity,
                             }
-            this.setState({
-                [this.matchingItem.quantity]: newQuantity,
-                [this.matchingItem.price]: newPrice
-            });
 
-        } else {
-            const newItem = {
+                                          } else {
+            let newItem = {
                 name: item.name,
                 price: totalPrice,
                 quantity: quantity,
                             }
-            const playerItems = this.state.playerItems.concat(newItem);
-            return {
-                playerItems
-            };
+            let newPlayerItems = this.state.playerItems.concat(newItem);
+            this.setState({
+                playerItems: newPlayerItems
+            });
+       
         };
     }
 

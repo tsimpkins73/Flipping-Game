@@ -16,9 +16,6 @@ export default class GameView extends React.Component {
     }
 
 
-doesPlayerHaveThis = (item) =>{
-      return this.props.playerItems.find(a => (a.name === item.name))
-}
 openBuyItemModal = (item) => {
 console.log('Open');
         this.props.openBuyItemModal(item);
@@ -41,12 +38,13 @@ openSellItemModal = (item) => {
     this.props.setGameview();
     this.props.openSellItemModal(item);
         };
-
+    items = this.props.items;
+funds = this.props.funds;
+playerItems = this.props.playerItems;
         
 
     render() {
-        let items = this.props.items;
-        let funds = this.props.funds;
+        let playerItems = this.playerItems;
 let loan = this.props.loan;
 let day = this.props.currentDay;
 let location = this.props.currentLocation;
@@ -55,14 +53,16 @@ let openSellItemModal=this.props.openSellItemModal;
 let cancelButton = this.props.cancelButton;
 let setGameview = this.props.setGameview;
 let upDateGameview = this.props.upDateGameview;
+let doesPlayerHaveThis= this.props.doesPlayerHaveThis;
 
 return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >    
 <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
-    <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30</section>
+    <section className="playerInfo">Funds: ${this.funds} | Loan: ${loan} | Day: {day}/30</section>
     <section className="location">{location}</section>
     <section className="items">
-{items.map(function (item) {
-   return <ItemLine setGameview={setGameview} upDateGameview={upDateGameview} item={item} openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} /> 
+{this.items.map(function (item) {
+    console.log(doesPlayerHaveThis(item));
+   return <ItemLine setGameview={setGameview} upDateGameview={upDateGameview} item={item} doesPlayerHaveThis={doesPlayerHaveThis}  openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} playerItems={playerItems}/> 
 })}
     </section>
      <section className="gameButtons">

@@ -4,7 +4,7 @@ export default class LocationModal extends React.Component {
 
     
     changeLocation = (location) => {
-        console.log('THE NEW LOCATION IS' + (location));
+        console.log('THE NEW LOCATION IS' + location);
 this.props.changeLocation(location);
 };
 
@@ -24,7 +24,7 @@ this.props.cancelButton();
        return <div className="locationsContainer"> 
        <div className="locationList" id={location.name}>{location.name}</div>
     <div className="locationSelect"> 
-    <button className= "selectLocationButton" onClick={() => changeLocation(location)} name={location.name} value="Select">Select</button></div>
+    <button className= "selectLocationButton" onClick={() => changeLocation(location.name)} name={location.name} value="Select">Select</button></div>
     <div className="dotted"></div>
     </div>
     

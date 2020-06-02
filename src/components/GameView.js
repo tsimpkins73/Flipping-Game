@@ -5,29 +5,44 @@ import LocationModal from './LocationModal.js'
 import ItemLine from './ItemLine.js'
 
 export default class GameView extends React.Component {
+    
+    constructor(props)  {
+        super(props);
+
+        this.state = {
+            upDateGameview: true,
+        };;
+
+    }
+
 
 doesPlayerHaveThis = (item) =>{
       return this.props.playerItems.find(a => (a.name === item.name))
 }
 openBuyItemModal = (item) => {
-    console.log('Open');
+console.log('Open');
         this.props.openBuyItemModal(item);
       };
 
 openLoanModal = () => {
-        console.log('Loan');
+    this.props.setGameview();
+    console.log('Loan');
             this.props.openLoanModal();
           };
 
 moveButton = () => {
-            console.log('Move');
+    this.props.setGameview();        
+    console.log('Move');
                 this.props.openLocationModal();
               };
     
 
 openSellItemModal = (item) => {
-          this.props.openSellItemModal(item);
+    this.props.setGameview();
+    this.props.openSellItemModal(item);
         };
+
+        
 
     render() {
         let items = this.props.items;
@@ -38,7 +53,8 @@ let location = this.props.currentLocation;
 let openBuyItemModal=this.props.openBuyItemModal;
 let openSellItemModal=this.props.openSellItemModal;
 let cancelButton = this.props.cancelButton;
-
+let setGameview = this.props.setGameview;
+let upDateGameview = this.props.upDateGameview;
 
 return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >    
 <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
@@ -46,7 +62,7 @@ return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'}
     <section className="location">{location}</section>
     <section className="items">
 {items.map(function (item) {
-   return <ItemLine item={item} openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} /> 
+   return <ItemLine setGameview={setGameview} upDateGameview={upDateGameview} item={item} openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} /> 
 })}
     </section>
      <section className="gameButtons">

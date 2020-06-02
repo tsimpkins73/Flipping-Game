@@ -173,7 +173,8 @@ export default class App extends React.Component {
             isGameViewBlurred: false,
             isFinishButtonActive: false,
             isLocationButtonActive: false,
-            isPayLoanButtonActive: false
+            isPayLoanButtonActive: false,
+            upDateGameview: true
         };
     }
 
@@ -183,7 +184,11 @@ export default class App extends React.Component {
     }
 
 
-
+    setGameview = () => {
+        this.setState({
+            upDateGameview: false   
+        });
+    }
 
     startGame = () => {
         this.setState({
@@ -194,7 +199,8 @@ export default class App extends React.Component {
             isStartPageActive: false,
             isGameViewActive: true,
             isLocationButtonActive: true,
-            isPayLoanButtonActive: true
+            isPayLoanButtonActive: true,
+            upDateGameview: true
         });
     }
 
@@ -229,6 +235,7 @@ export default class App extends React.Component {
             itemToBuy: itemToBuy,
             isBuyItemModalActive: true,
             isGameViewBlurred: true,
+            upDateGameview: false
         });
         console.log(itemToBuy);
     };
@@ -241,6 +248,7 @@ export default class App extends React.Component {
             itemToBuy: itemToBuy,
             isSellItemModalActive: true,
             isGameViewBlurred: true,
+            upDateGameview: false
         })
 
     };
@@ -255,7 +263,8 @@ export default class App extends React.Component {
             isSellItemModalActive: false,
             isLoanModalActive: false,
             isLocationModalActive: false,
-            isGameViewBlurred: false
+            isGameViewBlurred: false,
+            upDateGameview: false
         })
     };
 
@@ -298,6 +307,7 @@ export default class App extends React.Component {
         })
     }
 
+    
     addItem = (item, quantity, totalPrice) => {
         console.log(item);
         this.setState({
@@ -359,7 +369,8 @@ export default class App extends React.Component {
         const loan = this.state.loan;
         this.setState({
             isLoanModalActive: true,
-            isGameViewBlurred: true
+            isGameViewBlurred: true,
+            upDateGameview: false
         })
 
     };
@@ -371,7 +382,8 @@ export default class App extends React.Component {
             loan: newLoanAmount,
             funds: newFunds,
             isLoanModalActive: false,
-            isGameViewBlurred: false
+            isGameViewBlurred: false,
+            upDateGameview: false
         })
         if (newLoanAmount == 0) {
             this.setState({
@@ -385,6 +397,7 @@ export default class App extends React.Component {
         this.setState({
             isLocationModalActive: true,
             isGameViewBlurred: true,
+            upDateGameview: false
         })
 
     };
@@ -422,6 +435,9 @@ export default class App extends React.Component {
         if (this.state.loan != 0) {
             this.state.loan = Math.round(this.state.loan * 1.1);
         };
+        this.setState({
+            upDateGameview: true
+        })
     }
 
 
@@ -441,7 +457,7 @@ export default class App extends React.Component {
             <div class="container">
                 <StartPage isActive={this.state.isStartPageActive} startButton={this.startGame} />
 
-                <GameView {...this.props} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive}
+                <GameView {...this.props} setGameview={this.setGameview} upDateGameview={this.state.upDateGameview} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive}
                     openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} addItem={this.addItem}
                     openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItemOKButton={this.sellItemOKButton}
                     isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} payLoan={this.payLoan}

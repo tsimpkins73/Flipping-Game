@@ -10,6 +10,21 @@ export default class ItemLine extends React.Component {
         
         this.openBuyItemModal = this.openBuyItemModal.bind(this);
       }
+      componentDidMount = () => {
+        this.props.setGameview();
+    };
+
+    shouldComponentUpdate = (newProps) => {
+        
+console.log(newProps.upDateGameview);
+if(!newProps.upDateGameview){
+return false;
+} else{
+    return true;
+}
+};
+
+
 doesPlayerHaveThis = (item) =>{
       return this.props.playerItems.find(a => (a.name === item.name))
 }

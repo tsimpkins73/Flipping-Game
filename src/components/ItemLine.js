@@ -50,11 +50,12 @@ openSellItemModal = (item) => {
     
        return <div> 
        <div className="left" id={item.name}>{item.quantity} {item.name}</div>
+    <div className="dotted"></div>
+ 
     <div className="right">${itemPrice} 
     <button className= "buy" onClick={() =>this.openBuyItemModal(item.name, itemPrice)} name="buy" value="Buy">Buy</button>
     <button className= {(this.props.doesPlayerHaveThis(item)) ? 'hidden' : 'sell'} onClick={() => this.openSellItemModal(item, itemPrice)} name="sell" value="Sell">Sell</button>
     </div>
-    <div className="dotted"></div>
     </div>
      
     }

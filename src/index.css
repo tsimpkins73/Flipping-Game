@@ -24,16 +24,22 @@ h1 {
     text-align: center;
 }
 
-.left,
 .right {
     display: inline-grid;
-    grid-template-columns: 1fr .5fr;
-    padding: 1px 0.5em;
+    grid-template-columns: 1fr .5fr .5fr;
+    grid-column-gap: 5%;
+    padding: 3px 0.5em;
     background: #fff;
     float: right;
 }
 
 .left {
+    display: inline-grid;
+    grid-template-columns: 1fr .5fr;
+    
+    background: #fff;
+    grid-column-gap: 5%;
+    padding: 3px 0.5em;
     float: left;
     clear: both;
 }

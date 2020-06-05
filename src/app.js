@@ -159,7 +159,9 @@ export default class App extends React.Component {
                 price: 0,
                 quantity: 0,
             },
-
+            playerItems: [
+                
+        ],
             isGameViewActive: false,
             isStartPageActive: true,
             isFinishGameModalActive: false,
@@ -279,20 +281,11 @@ export default class App extends React.Component {
     };
 
     doesPlayerHaveThis = (item) => {
-        console.log(item);
-        let playerItems = this.state.playerItems || '';
-        console.log(playerItems);
-        Object.keys(playerItems).forEach(key => {
-                       if (key.name === item.name) {
-                        console.log(key.name);
-                         return true;
-            }
-            else {
-                console.log(key.name);
-                return false;
-            }
-        })
-    }
+        console.log(item.name);
+        let playerItems = this.state.playerItems;
+     return this.state.playerItems.some(key => 
+                       key.name == item.name);
+              }
 
     
     addItem = (item, quantity, totalPrice) => {
@@ -312,9 +305,11 @@ export default class App extends React.Component {
                 playerItems: newItem
             });
         }
-        if (this.doesPlayerHaveThis(item)) {
-            let items = [this.state.playerItems];
-            let matchingItem = items.find(matchingItem => matchingItem.name == item.name);
+        else if (this.doesPlayerHaveThis(item)) {
+            console.log('Player has this item!');
+            
+            let matchingItem = this.state.playerItems.filter(matchingItem => matchingItem.name == item.name);
+            console.log(matchingItem);
             let newQuantity = matchingItem.quantity + quantity;
             let newPrice = (matchingItem.price + totalPrice) / newQuantity;
             let newItem = {
@@ -322,11 +317,10 @@ export default class App extends React.Component {
                 price: newPrice,
                 quantity: newQuantity,
             }
-            let playerItems = [this.state.playerItems];
-            let newPlayerItems = playerItems.concat(newItem);
+            let newPlayerItems = this.state.playerItems.concat(newItem);
             console.log(newPlayerItems);
             this.setState({
-                playerItems: newPlayerItems
+                playerItems: [newPlayerItems]
             });
         } else {
             let newItem = {
@@ -334,8 +328,7 @@ export default class App extends React.Component {
                 price: totalPrice,
                 quantity: quantity,
             }
-            let playerItems = [this.state.playerItems];
-            let newPlayerItems = playerItems.concat(newItem);
+            let newPlayerItems = this.state.playerItems.concat(newItem);
             console.log(newPlayerItems);
             this.setState({
                 playerItems: newPlayerItems

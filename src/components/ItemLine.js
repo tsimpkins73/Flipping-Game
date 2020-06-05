@@ -54,7 +54,7 @@ openSellItemModal = (item) => {
  
     <div className="right">${itemPrice} 
     <button className= "buy" onClick={() =>this.openBuyItemModal(item.name, itemPrice)} name="buy" value="Buy">Buy</button>
-    <button className= {(this.props.doesPlayerHaveThis(item)) ? 'hidden' : 'sell'} onClick={() => this.openSellItemModal(item, itemPrice)} name="sell" value="Sell">Sell</button>
+    <button className= {(this.props.doesPlayerHaveThis(item)) ? 'sell' : 'hidden'} onClick={() => this.openSellItemModal(item, itemPrice)} name="sell" value="Sell">Sell</button>
     </div>
     </div>
      

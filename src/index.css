@@ -23,7 +23,12 @@ h1 {
     margin: auto;
     text-align: center;
 }
-
+.itemLine{
+    display: inline-grid;
+    grid-template-columns: .75fr 1fr .5fr;
+    width: 100%;
+    padding: 10% 0 10%;
+}
 .right {
     display: inline-grid;
     grid-template-columns: 1fr .5fr .5fr;
@@ -31,22 +36,36 @@ h1 {
     padding: 3px 0.5em;
     background: #fff;
     float: right;
+    text-align: right;
 }
 
 .left {
     display: inline-grid;
-    grid-template-columns: 1fr .5fr;
-    
+    grid-template-columns: auto auto;
+    font-size: auto;
     background: #fff;
     grid-column-gap: 5%;
-    padding: 3px 0.5em;
+    padding: 3px;
+    height: auto;
     float: left;
     clear: both;
+    text-align: left;
+    white-space: nowrap;
+
+}
+
+.itemQuantity, .itemName{
+    width: auto;
+    height: auto;
+    font-size: 6vw;
 }
 
 .dotted {
     border-bottom: 1px dotted grey;
     margin-bottom: 2px;
+    padding: 0 2%;
+    width: 95%;
+    text-align: center;
 }
 
 .modal {

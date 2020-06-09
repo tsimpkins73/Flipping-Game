@@ -48,8 +48,11 @@ openSellItemModal = (item) => {
     let itemPrice = currentItemPrice(priceMin, priceMax);
 
     
-       return <div> 
-       <div className="left" id={item.name}>{item.quantity} {item.name}</div>
+       return <div className="itemLine"> 
+       <div className="left" id={item.name}>
+           <div className="itemQuantity">{item.quantity}</div>
+            <div className="itemName">{item.name}</div>
+            </div>
     <div className="dotted"></div>
  
     <div className="right">${itemPrice} 

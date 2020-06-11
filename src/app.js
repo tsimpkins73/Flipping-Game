@@ -227,8 +227,9 @@ export default class App extends React.Component {
 
     openSellItemModal = (item) => {
         const itemName = item;
-        const itemToBuy = this.state.items.find(item => (item.name === itemName));
-        this.setState({
+        const newItem = this.state.playerItems.find(item => (item.name === itemName));
+        const itemToBuy = { name: newItem.name, quantity: 0, price: newItem.price };
+                this.setState({
             itemToBuy: itemToBuy,
             isSellItemModalActive: true,
             isGameViewBlurred: true,
@@ -308,20 +309,22 @@ export default class App extends React.Component {
         else if (this.doesPlayerHaveThis(item)) {
             console.log('Player has this item!');
             
-            let matchingItem = this.state.playerItems.filter(matchingItem => matchingItem.name == item.name);
+            let matchingItem = this.state.playerItems.find(matchingItem => matchingItem.name == item.name);
             console.log(matchingItem);
             let newQuantity = matchingItem.quantity + quantity;
+            console.log(matchingItem.quantity);
             let newPrice = (matchingItem.price + totalPrice) / newQuantity;
             let newItem = {
                 name: item.name,
                 price: newPrice,
-                quantity: newQuantity,
+                quantity: newQuantity
             }
-            let newPlayerItems = this.state.playerItems.concat(newItem);
-            console.log(newPlayerItems);
-            this.setState({
-                playerItems: [newPlayerItems]
-            });
+            let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === newItem.name ? {...playerItem, newQuantity, newPrice } : playerItem);
+            
+            this.setState( {
+                            playerItems: [newPlayerItems]
+                        });
+                        console.log(newPlayerItems);
         } else {
             let newItem = {
                 name: item.name,

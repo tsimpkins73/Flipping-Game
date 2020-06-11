@@ -35,7 +35,6 @@ moveButton = () => {
     
 
 openSellItemModal = (item) => {
-    this.props.setGameview();
     this.props.openSellItemModal(item);
         };
     items = this.props.items;

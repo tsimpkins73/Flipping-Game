@@ -290,7 +290,7 @@ export default class App extends React.Component {
 
     
     addItem = (item, quantity, totalPrice) => {
-        console.log(item);
+        console.log(totalPrice);
         this.setState({
             funds: this.state.funds - totalPrice,
         });
@@ -314,15 +314,10 @@ export default class App extends React.Component {
             let newQuantity = matchingItem.quantity + quantity;
             console.log(matchingItem.quantity);
             let newPrice = (matchingItem.price + totalPrice) / newQuantity;
-            let newItem = {
-                name: item.name,
-                price: newPrice,
-                quantity: newQuantity
-            }
-            let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === newItem.name ? {...playerItem, newQuantity, newPrice } : playerItem);
+                   let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, newQuantity, newPrice } : playerItem);
             
             this.setState( {
-                            playerItems: [newPlayerItems]
+                              playerItems: [newPlayerItems]
                         });
                         console.log(newPlayerItems);
         } else {
@@ -336,22 +331,27 @@ export default class App extends React.Component {
             this.setState({
                 playerItems: newPlayerItems
             });
-
+console.log(this.state.funds);
         };
         
         this.cancelButton();
     }
 
-     sellItemOKButton = (item, cost) => {
-        this.setState({
-            funds: this.state.funds + cost,
-        });
-        if (this.state.playerItems.find(matchingItem => matchingItem.name == item.name)) {
-            const newQuantity = this.matchingItem.quantity - item.quantity;
-            this.setState({
-                [this.matchingItem.quantity]: newQuantity
-            });
-        }
+     sellItemOKButton = (item, cost, quantity) => {
+        let matchingItem = this.state.playerItems.find(matchingItem => matchingItem.name == item.name);
+            console.log(matchingItem);
+            let newQuantity = matchingItem.quantity - quantity;
+            console.log(matchingItem.quantity);
+            let newPrice = matchingItem.price / newQuantity;
+           
+            let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, newQuantity, newPrice } : playerItem);
+            
+            this.setState( {
+                            playerItems: [newPlayerItems],
+                            funds: this.state.funds + cost,
+                        });
+                        console.log(newPlayerItems);
+       
     };
 
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import BuyItemModal from './BuyItemModal.js'
+import SellItemModal from './SellItemModal.js'
 import LoanModal from './LoanModal.js'
 import LocationModal from './LocationModal.js'
 import ItemLine from './ItemLine.js'
@@ -38,12 +39,12 @@ openSellItemModal = (item) => {
     this.props.openSellItemModal(item);
         };
     items = this.props.items;
-funds = this.props.funds;
 playerItems = this.props.playerItems;
         
 
     render() {
         let playerItems = this.playerItems;
+        let funds = this.props.funds;
 let loan = this.props.loan;
 let day = this.props.currentDay;
 let location = this.props.currentLocation;
@@ -56,7 +57,7 @@ let doesPlayerHaveThis= this.props.doesPlayerHaveThis;
 
 return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >    
 <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
-    <section className="playerInfo">Funds: ${this.funds} | Loan: ${loan} | Day: {day}/30</section>
+    <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30</section>
     <section className="location">{location}</section>
     <section className="items">
 {this.items.map(function (item) {
@@ -71,7 +72,7 @@ return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'}
      <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} increaseBuyQuantity={this.props.increaseBuyQuantity} decreaseQuantity={this.props.decreaseQuantity} addItem={this.props.addItem} />
     <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} cancelButton={cancelButton} increaseSellQuantity={this.props.increaseSellQuantity} decreaseQuantity={this.props.decreaseQuantity} funds={this.props.funds} payLoan={this.props.payLoan} />
     <LocationModal isActive={this.props.isLocationModalActive} locations= {this.props.locations} changeLocation={this.props.changeLocation} cancelButton={cancelButton} />
-    
+    <SellItemModal isActive={this.props.isSellItemModalActive} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToSell={this.props.itemToSell} playerItems={this.props.playerItems} sellItem={this.props.sellItem} />
      </section>
         )
     }

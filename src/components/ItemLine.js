@@ -34,8 +34,8 @@ openBuyItemModal = (item, price) => {
         this.props.openBuyItemModal(item, price);
       };
 
-openSellItemModal = (item) => {
-          this.props.openSellItemModal(item);
+openSellItemModal = (item, price) => {
+          this.props.openSellItemModal(item, price);
         };
 
     render() {

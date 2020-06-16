@@ -225,12 +225,13 @@ export default class App extends React.Component {
     };
 
 
-    openSellItemModal = (item) => {
-        const itemName = item;
+    openSellItemModal = (item, price) => {
+        const itemName = item.name;
         const newItem = this.state.playerItems.find(item => (item.name === itemName));
-        const itemToBuy = { name: newItem.name, quantity: 0, price: newItem.price };
+        console.log(newItem)
+        const itemToSell = { name: newItem.name, quantity: newItem.quantity, price: price };
                 this.setState({
-            itemToBuy: itemToBuy,
+            itemToSell: itemToSell,
             isSellItemModalActive: true,
             isGameViewBlurred: true,
             upDateGameview: false
@@ -256,32 +257,7 @@ export default class App extends React.Component {
 
 
 
-    itemCounter = () => {
-        if (this.state.currentTotal + this.state.itemToBuy.price > this.state.funds) {
-            console.log('NOT ENOUGH MONEY');
-            this.setState({ isIncreaseButtonActive: false })
-        } if (this.state.selectedQuantity === 0) {
-            this.setState({ isDecreaseButtonActive: false })
-        }
-    };
-
-    increaseBuyQuantity = () => {
-        let newTotal = this.state.currentTotal + this.state.itemToBuy.price;
-        this.state.selectedQuantity++;
-        this.setState({ currentTotal: newTotal });
-        console.log(this.state.selectedQuantity);
-        console.log(this.state.currentTotal);
-    };
-
-    decreaseQuantity = () => {
-        let newTotal = this.state.currentTotal - this.state.itemToBuy.price;
-        this.state.selectedQuantity--;
-        this.setState({ currentTotal: newTotal });
-        console.log(this.state.selectedQuantity);
-        console.log(this.state.currentTotal);
-    };
-
-    doesPlayerHaveThis = (item) => {
+       doesPlayerHaveThis = (item) => {
         console.log(item.name);
         let playerItems = this.state.playerItems;
      return this.state.playerItems.some(key => 
@@ -302,6 +278,7 @@ export default class App extends React.Component {
                 price: newPrice,
                 quantity: newQuantity,
             }
+            console.log(newItem);
             this.setState({
                 playerItems: newItem
             });
@@ -331,26 +308,26 @@ export default class App extends React.Component {
             this.setState({
                 playerItems: newPlayerItems
             });
-console.log(this.state.funds);
+console.log(newPlayerItems);
         };
         
         this.cancelButton();
     }
 
-     sellItemOKButton = (item, cost, quantity) => {
+     sellItem = (item, cost, quantityToRemove) => {
         let matchingItem = this.state.playerItems.find(matchingItem => matchingItem.name == item.name);
             console.log(matchingItem);
-            let newQuantity = matchingItem.quantity - quantity;
+            let quantity = matchingItem.quantity - quantityToRemove;
             console.log(matchingItem.quantity);
-            let newPrice = matchingItem.price / newQuantity;
-           
-            let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, newQuantity, newPrice } : playerItem);
+                       
+            let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, quantity} : playerItem);
             
             this.setState( {
                             playerItems: [newPlayerItems],
                             funds: this.state.funds + cost,
                         });
                         console.log(newPlayerItems);
+                        this.cancelButton();
        
     };
 
@@ -445,7 +422,7 @@ console.log(this.state.funds);
 
                 <GameView {...this.props} setGameview={this.setGameview} upDateGameview={this.state.upDateGameview} doesPlayerHaveThis={this.doesPlayerHaveThis} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive}
                     openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} addItem={this.addItem}
-                    openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItemOKButton={this.sellItemOKButton}
+                    openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItem={this.sellItem}
                     isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} payLoan={this.payLoan}
                     openLocationModal={this.openLocationModal} changeLocation={this.changeLocation} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} cancelButton={this.cancelButton} isBuyItemModalActive={this.state.isBuyItemModalActive} isSellItemModalActive={this.state.isSellItemModalActive} isLoanModalActive={this.state.isLoanModalActive} isLocationModalActive={this.state.isLocationModalActive} />
             </div>

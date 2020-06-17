@@ -27,7 +27,7 @@ h1 {
     display: inline-grid;
     grid-template-columns: .75fr 1fr .5fr;
     width: 100%;
-    padding: 10% 0 10%;
+    padding: 2% 0 2%;
 }
 .right {
     display: inline-grid;
@@ -92,6 +92,7 @@ h1 {
     /* Black w/ opacity */
 }
 
+.mainSectionLanding,
 .location,
 .gameButtons,
 .playerInfo,
@@ -102,6 +103,10 @@ h1 {
     text-align: center;
     font-size: 5vw;
 }
+
+.mainSectionLanding {
+    margin-top: 35vh;}
+
 
 h2{
     margin: 0;
@@ -154,16 +159,33 @@ z-index: 1;
 button.buy,
 button.sell,
 button.start {
-    width: 100%;
+    width: 15vw;
     margin: 1.5% auto;
     padding: 2%;
+    font-size: 4vw;
     }
+
+    button.loan,
+    button.cancel {
+        width: 25vw;
+        margin: 1.5% auto;
+        padding: 2%;
+        font-size: 4vw;
+        }
+    
 
 .gameContainer{
     margin-top:0;
     z-index:0;
 
 }
+
+button.move {
+    width: 15vw;
+    margin: 1.5% auto;
+    padding: 2%;
+    font-size: 4vw;
+    }
 
 .gameContainerBlurred{
     margin-top:0;

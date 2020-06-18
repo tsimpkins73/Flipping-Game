@@ -1,10 +1,8 @@
 'use strict';
 import React from 'react';
 import StartPage from './components/StartPage'
+import FinishPage from './components/FinishPage'
 import GameView from './components/GameView'
-import BuyItemModal from './components/BuyItemModal'
-import LocationModal from './components/LocationModal'
-import LoanModal from './components/LoanModal'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -164,14 +162,14 @@ export default class App extends React.Component {
         ],
             isGameViewActive: false,
             isStartPageActive: true,
-            isFinishGameModalActive: false,
+            isFinishPageActive: false,
             isBuyItemModalActive: false,
             isSellItemModalActive: false,
             isLoanModalActive: false,
             isLocationModalActive: false,
             isGameViewBlurred: false,
             isFinishButtonActive: false,
-            isLocationButtonActive: false,
+            isMoveButtonActive: true,
             isPayLoanButtonActive: false,
             upDateGameview: true
         };
@@ -376,14 +374,14 @@ console.log(newPlayerItems);
         const finalScore = this.state.funds - this.state.loan;
         this.setState({
             finalScore: finalScore,
-            isFinishGameModalActive: true,
+            isFinishPageActive: true,
             isGameViewBlurred: true
         })
 
     };
 
     changeDay = () => {
-        ++this.state.currentDay;
+        ++this.state.currentDay
         
         console.log("IT IS NOW DAY " + this.state.currentDay);
         if (this.state.loan != 0) {
@@ -398,7 +396,23 @@ console.log(newPlayerItems);
         this.setState({
             currentLocation: location
         });
-        console.log("THE NEW LOCATION IS " + location);
+if(this.state.currentDay === 29){
+    this.changeDay();
+    this.setState({
+        isFinishGameButtonActive: true,
+        isPayLoanButtonActive: false,
+        isMoveButtonActive: false,
+        selectedQuantity: 0,
+        currentTotal: 0,
+        isBuyItemModalActive: false,
+        isSellItemModalActive: false,
+        isLoanModalActive: false,
+        isLocationModalActive: false,
+        isGameViewBlurred: false,
+        upDateGameview: true
+    })
+}else{
+console.log("THE NEW LOCATION IS " + location);
         this.changeDay();
         this.setState({
             selectedQuantity: 0,
@@ -411,6 +425,7 @@ console.log(newPlayerItems);
             upDateGameview: true
         });
     }
+}
 
 
 
@@ -420,11 +435,12 @@ console.log(newPlayerItems);
             <div class="container">
                 <StartPage isActive={this.state.isStartPageActive} startButton={this.startGame} />
 
-                <GameView {...this.props} setGameview={this.setGameview} upDateGameview={this.state.upDateGameview} doesPlayerHaveThis={this.doesPlayerHaveThis} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive}
+                <GameView {...this.props} setGameview={this.setGameview} upDateGameview={this.state.upDateGameview} doesPlayerHaveThis={this.doesPlayerHaveThis} isBlurred={this.state.isGameViewBlurred} isActive={this.state.isGameViewActive} isMoveButtonActive={this.state.isMoveButtonActive} isFinishGameButtonActive={this.state.isFinishGameButtonActive} finishGameButton={this.finishGameButton}
                     openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} addItem={this.addItem}
                     openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItem={this.sellItem}
                     isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} payLoan={this.payLoan}
                     openLocationModal={this.openLocationModal} changeLocation={this.changeLocation} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} cancelButton={this.cancelButton} isBuyItemModalActive={this.state.isBuyItemModalActive} isSellItemModalActive={this.state.isSellItemModalActive} isLoanModalActive={this.state.isLoanModalActive} isLocationModalActive={this.state.isLocationModalActive} />
+             <FinishPage isActive={this.state.isFinishPageActive} funds={this.state.funds} startButton={this.startGame} />
             </div>
         );
     }

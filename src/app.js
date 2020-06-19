@@ -171,6 +171,7 @@ export default class App extends React.Component {
             isFinishButtonActive: false,
             isMoveButtonActive: true,
             isPayLoanButtonActive: false,
+            isPlayerBagModalActive: false,
             upDateGameview: true
         };
     }
@@ -225,8 +226,10 @@ export default class App extends React.Component {
 
     openSellItemModal = (item, price) => {
         const itemName = item.name;
-        const newItem = this.state.playerItems.find(item => (item.name === itemName));
-        console.log(newItem)
+        console.log(itemName);
+        console.log(this.state.playerItems);
+        const newItem = this.state.playerItems.find(item => (item.name == itemName));
+        console.log(newItem);
         const itemToSell = { name: newItem.name, quantity: newItem.quantity, price: price };
                 this.setState({
             itemToSell: itemToSell,
@@ -248,6 +251,7 @@ export default class App extends React.Component {
             isLoanModalActive: false,
             isLocationModalActive: false,
             isGameViewBlurred: false,
+            isPlayerBagModalActive: false,
             upDateGameview: false
         })
     };
@@ -256,8 +260,7 @@ export default class App extends React.Component {
 
 
        doesPlayerHaveThis = (item) => {
-        console.log(item.name);
-        let playerItems = this.state.playerItems;
+               let playerItems = this.state.playerItems;
      return this.state.playerItems.some(key => 
                        key.name == item.name);
               }
@@ -292,7 +295,7 @@ export default class App extends React.Component {
                    let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, newQuantity, newPrice } : playerItem);
             
             this.setState( {
-                              playerItems: [newPlayerItems]
+                              playerItems: newPlayerItems
                         });
                         console.log(newPlayerItems);
         } else {
@@ -321,7 +324,7 @@ console.log(newPlayerItems);
             let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, quantity} : playerItem);
             
             this.setState( {
-                            playerItems: [newPlayerItems],
+                            playerItems: newPlayerItems,
                             funds: this.state.funds + cost,
                         });
                         console.log(newPlayerItems);
@@ -361,6 +364,15 @@ console.log(newPlayerItems);
     openLocationModal = () => {
         this.setState({
             isLocationModalActive: true,
+            isGameViewBlurred: true,
+            upDateGameview: false
+        })
+
+    };
+
+    openPlayerBagModal = () => {
+        this.setState({
+            isPlayerBagModalActive: true,
             isGameViewBlurred: true,
             upDateGameview: false
         })
@@ -439,6 +451,7 @@ console.log("THE NEW LOCATION IS " + location);
                     openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} addItem={this.addItem}
                     openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItem={this.sellItem}
                     isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} payLoan={this.payLoan}
+                    openPlayerBagModal={this.openPlayerBagModal} isPlayerBagModalActive={this.state.isPlayerBagModalActive}
                     openLocationModal={this.openLocationModal} changeLocation={this.changeLocation} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} cancelButton={this.cancelButton} isBuyItemModalActive={this.state.isBuyItemModalActive} isSellItemModalActive={this.state.isSellItemModalActive} isLoanModalActive={this.state.isLoanModalActive} isLocationModalActive={this.state.isLocationModalActive} />
              <FinishPage isActive={this.state.isFinishPageActive} funds={this.state.funds} startButton={this.startGame} />
             </div>

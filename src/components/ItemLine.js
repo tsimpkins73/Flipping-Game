@@ -16,7 +16,6 @@ export default class ItemLine extends React.Component {
 
     shouldComponentUpdate = (newProps) => {
         
-console.log(newProps.upDateGameview);
 if(!newProps.upDateGameview){
 return false;
 } else{

@@ -54,12 +54,20 @@ h1 {
 
 }
 
-.itemQuantity, .itemName{
+.itemQuantity{
     width: auto;
     height: auto;
     font-size: 5vw;
     text-align: left;
 }
+
+.itemName{
+    width: auto;
+    height: auto;
+    font-size: 5vw;
+    text-align: center;
+}
+
 
 .dotted {
     border-bottom: 1px dotted grey;
@@ -67,29 +75,6 @@ h1 {
     padding: 0 2%;
     width: 95%;
     text-align: center;
-}
-
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.7);
-    /* Black w/ opacity */
 }
 
 .mainSectionLanding,
@@ -104,6 +89,10 @@ h1 {
     font-size: 5vw;
 }
 
+
+.locationsContainer {
+height: auto;
+}
 .mainSectionLanding {
     margin-top: 35vh;}
 
@@ -118,16 +107,17 @@ h2{
 }
 
 .location {
-    background: rgb(180, 219, 118);
-
+    display: inline-grid;
+    grid-template-columns: 4fr 1fr .5fr;
 }
 
 .locationList {
     display: inline-grid;
-    grid-template-columns: 1fr .5fr;
+    grid-template-columns: 1fr;
     padding: 1px 0.5em;
     float: left;
     clear: both;
+    text-align: left;
 }
 
 .locationSelect {
@@ -150,11 +140,38 @@ h2{
     box-shadow: 2px 2px 2px black;
     width: 80%;
     display: block;
-    height: auto;
+    height: 50%;
     text-align: center;
 color: white;
 z-index: 1;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%); 
+            -webkit-animation-name: modal-animation; 
+            -webkit-animation-duration: 0.5s; 
+            animation-name: modal-animation; 
+            animation-duration: 0.5s; 
 }
+
+@-webkit-keyframes modal-animation { 
+    from { 
+        opacity: 0; 
+    } 
+    to {  
+        opacity: 1; 
+    } 
+} 
+  
+@keyframes modal-animation { 
+    from { 
+        opacity: 0; 
+    } 
+    to { 
+        opacity: 1; 
+    } 
+} 
+
 
 button.buy,
 button.sell,
@@ -166,7 +183,10 @@ button.start {
     }
 
     button.loan,
-    button.cancel {
+    button.cancel,
+    button.ok,
+    button.incrButton,
+    button.decrButton {
         width: 25vw;
         margin: 1.5% auto;
         padding: 2%;
@@ -227,6 +247,7 @@ button.incrButton, button.decrButton{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: 5vw;
 }
 
 .counterInfo{

@@ -19,17 +19,17 @@ this.props.cancelButton();
         let locations = this.props.locations;
         let changeLocation = this.changeLocation; 
                return ( <div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 class="itemName">Select a New Location</h2>
-                              {locations.map(function (location) {
+                              <div className="locationsContainer"> {locations.map(function (location) {
                    
-       return <div className="locationsContainer"> 
+       return <div className="location"> 
        <div className="locationList" id={location.name}>{location.name}</div>
+       <div className="dotted"></div>
     <div className="locationSelect"> 
     <button className= "selectLocationButton" onClick={() => changeLocation(location.name)} name={location.name} value="Select">Select</button></div>
-    <div className="dotted"></div>
     </div>
-    
+      
 })}
-
+</div>
                <button class="cancel" id="cancel" name="cancel" value="cancel" onClick={() => this.cancelButton()} >CANCEL</button> 
                </div>
         )

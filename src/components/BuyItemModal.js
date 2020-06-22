@@ -16,7 +16,7 @@ export default class BuyItemModal extends React.Component {
         this.setState({
             item: nextProps.itemToBuy
         });
-
+this.resetCount();
     }
 
 
@@ -39,13 +39,20 @@ export default class BuyItemModal extends React.Component {
         let itemToBuy = this.state.item;
         console.log('ADD ITEM ' + itemToBuy + " " + quantity + " " + totalPrice);
         this.props.addItem(itemToBuy, quantity, totalPrice);
+        this.resetCount();
     };
 
     cancelButton = () => {
         console.log('CANCEL');
         this.props.cancelButton();
+        this.resetCount();
     };
 
+    resetCount = () => {
+        this.setState({
+            count: 0
+        })
+    };
 
 
     render() {

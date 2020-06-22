@@ -320,14 +320,23 @@ console.log(newPlayerItems);
             console.log(matchingItem);
             let quantity = matchingItem.quantity - quantityToRemove;
             console.log(matchingItem.quantity);
-                       
+            if (quantity == 0){
+                let playerItems =  this.state.playerItems;
+                let newPlayerItems = playerItems.filter(item => item.quantity > 0);
+                this.setState( {
+                    playerItems: newPlayerItems,
+                    funds: this.state.funds + cost,
+                });
+                console.log(newPlayerItems);
+            }else{          
             let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, quantity} : playerItem);
-            
             this.setState( {
-                            playerItems: newPlayerItems,
-                            funds: this.state.funds + cost,
-                        });
-                        console.log(newPlayerItems);
+                playerItems: newPlayerItems,
+                funds: this.state.funds + cost,
+            });
+            console.log(newPlayerItems);
+          
+        };
                         this.cancelButton();
        
     };

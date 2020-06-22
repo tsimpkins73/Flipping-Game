@@ -291,7 +291,7 @@ export default class App extends React.Component {
             console.log(matchingItem);
             let newQuantity = matchingItem.quantity + quantity;
             console.log(matchingItem.quantity);
-            let newPrice = (matchingItem.price + totalPrice) / newQuantity;
+            let newPrice = (matchingItem.price + (totalPrice / quantity)) / newQuantity;
                    let newPlayerItems = this.state.playerItems.map(playerItem => playerItem.name === item.name ? {...playerItem, newQuantity, newPrice } : playerItem);
             
             this.setState( {
@@ -301,7 +301,7 @@ export default class App extends React.Component {
         } else {
             let newItem = {
                 name: item.name,
-                price: totalPrice,
+                price: item.price,
                 quantity: quantity,
             }
             let newPlayerItems = this.state.playerItems.concat(newItem);
@@ -319,10 +319,10 @@ console.log(newPlayerItems);
         let matchingItem = this.state.playerItems.find(matchingItem => matchingItem.name == item.name);
             console.log(matchingItem);
             let quantity = matchingItem.quantity - quantityToRemove;
-            console.log(matchingItem.quantity);
+            console.log(quantity);
             if (quantity == 0){
                 let playerItems =  this.state.playerItems;
-                let newPlayerItems = playerItems.filter(item => item.quantity > 0);
+                let newPlayerItems = playerItems.filter(matchingItem => matchingItem.name == item.name);
                 this.setState( {
                     playerItems: newPlayerItems,
                     funds: this.state.funds + cost,

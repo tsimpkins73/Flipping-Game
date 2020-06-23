@@ -8,14 +8,16 @@ export default class BuyItemModal extends React.Component {
 
         this.state = {
             count: 0,
-            item: {}
+            item: {},
+            playerItemsQuantityMax: 100
         };;
 
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            item: nextProps.itemToBuy
+            item: nextProps.itemToBuy,
+            playerItemsQuantityMax: nextProps.playerItemsQuantityMax
         });
         this.resetCount();
     }
@@ -66,7 +68,7 @@ export default class BuyItemModal extends React.Component {
         console.log(this.props.itemToBuy);
         let item = this.state.item;
         let newTotal = this.state.item.price * this.state.count;
-        let maxAmount = this.state.item.price / this.props.funds;
+        let maxAmount = this.state.playerItemsQuantityMax;
         let { count } = this.state
 
         return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
@@ -74,7 +76,7 @@ export default class BuyItemModal extends React.Component {
                <div className="counterInfo">
                     <div className="counterWindow">{this.state.count}</div><div className="counterButtons">
                         <Slider min="0" max={maxAmount} step="1" value={count} orientation="horizontal" onChange={this.handleOnChange} handleLabel={count}  />
-                        <button className={(newTotal + this.state.item.price < this.props.funds) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
+                        <button className={(newTotal + this.state.item.price < this.props.funds && this.state.count < maxAmount) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
                         <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
                     </div>
                     <h1> Total: {newTotal} </h1>

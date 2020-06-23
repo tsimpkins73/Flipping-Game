@@ -14,7 +14,7 @@ this.props.cancelButton();
 
                 let changeLocation = this.changeLocation; 
                return ( <div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 class="itemName">Your Items</h2>
-                              <div className="locationsContainer"> {this.props.playerItems.map(function (item) {
+                              <div className="locationsContainer"> <p>You have room for {this.props.playerItemsQuantityMax} more items in your bag.</p>{this.props.playerItems.map(function (item) {
                    console.log(item);
        return <div className="location"> 
        <div className="playerItemList" id={item.name}>{item.name} {item.quantity} {item.price}</div>

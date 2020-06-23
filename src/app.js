@@ -160,6 +160,7 @@ export default class App extends React.Component {
             playerItems: [
                 
         ],
+        playerItemsQuantityMax: 100,
             isGameViewActive: false,
             isStartPageActive: true,
             isFinishPageActive: false,
@@ -267,9 +268,11 @@ export default class App extends React.Component {
 
     
     addItem = (item, quantity, totalPrice) => {
+        let playerItemsQuantityMaxNew = this.state.playerItemsQuantityMax - quantity;
         console.log(totalPrice);
         this.setState({
             funds: this.state.funds - totalPrice,
+            playerItemsQuantityMax: playerItemsQuantityMaxNew
         });
         if (!this.state.playerItems){
             let newQuantity = quantity;
@@ -281,7 +284,7 @@ export default class App extends React.Component {
             }
             console.log(newItem);
             this.setState({
-                playerItems: newItem
+                playerItems: newItem,
             });
         }
         else if (this.doesPlayerHaveThis(item)) {
@@ -316,6 +319,7 @@ console.log(newPlayerItems);
     }
 
      sellItem = (item, cost, quantityToRemove) => {
+         let playerItemsQuantityMaxNew = this.state.playerItemsQuantityMax + quantityToRemove;
         let matchingItem = this.state.playerItems.find(matchingItem => matchingItem.name == item.name);
             console.log(matchingItem);
             let quantity = matchingItem.quantity - quantityToRemove;
@@ -326,6 +330,7 @@ console.log(newPlayerItems);
                 this.setState( {
                     playerItems: newPlayerItems,
                     funds: this.state.funds + cost,
+                    playerItemsQuantityMax: playerItemsQuantityMaxNew
                 });
                 console.log(newPlayerItems);
             }else{          
@@ -333,6 +338,7 @@ console.log(newPlayerItems);
             this.setState( {
                 playerItems: newPlayerItems,
                 funds: this.state.funds + cost,
+                playerItemsQuantityMax: playerItemsQuantityMaxNew
             });
             console.log(newPlayerItems);
           
@@ -460,7 +466,7 @@ console.log("THE NEW LOCATION IS " + location);
                     openBuyItemModal={this.openBuyItemModal} increaseBuyQuantity={this.increaseBuyQuantity} decreaseQuantity={this.decreaseQuantity} itemToBuy={this.state.itemToBuy} addItem={this.addItem}
                     openSellItemModal={this.openSellItemModal} increaseSellQuantity={this.increaseSellQuantity} sellItem={this.sellItem}
                     isPayLoanButtonActive={this.state.isPayLoanButtonActive} openLoanModal={this.openLoanModal} payLoan={this.payLoan}
-                    openPlayerBagModal={this.openPlayerBagModal} isPlayerBagModalActive={this.state.isPlayerBagModalActive}
+                    openPlayerBagModal={this.openPlayerBagModal} isPlayerBagModalActive={this.state.isPlayerBagModalActive} playerItemsQuantityMax= {this.state.playerItemsQuantityMax}
                     openLocationModal={this.openLocationModal} changeLocation={this.changeLocation} items={this.state.items} playerItems={this.state.playerItems} moveButton={this.moveButton} locations={this.state.locations} funds={this.state.funds} loan={this.state.loan} currentDay={this.state.currentDay} currentLocation={this.state.currentLocation} selectedQuantity={this.state.selectedQuantity} itemToSell={this.state.itemToSell} cancelButton={this.cancelButton} isBuyItemModalActive={this.state.isBuyItemModalActive} isSellItemModalActive={this.state.isSellItemModalActive} isLoanModalActive={this.state.isLoanModalActive} isLocationModalActive={this.state.isLocationModalActive} />
              <FinishPage isActive={this.state.isFinishPageActive} funds={this.state.funds} startButton={this.startGame} />
             </div>

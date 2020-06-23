@@ -66,6 +66,7 @@ let cancelButton = this.props.cancelButton;
 let setGameview = this.props.setGameview;
 let upDateGameview = this.props.upDateGameview;
 let doesPlayerHaveThis= this.props.doesPlayerHaveThis;
+let playerItemsQuantityMax= this.props.playerItemsQuantityMax;
 
 return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >    
 <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
@@ -74,7 +75,7 @@ return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'}
     <section className="items">
 {this.items.map(function (item) {
     console.log(doesPlayerHaveThis(item));
-   return <ItemLine setGameview={setGameview} upDateGameview={upDateGameview} item={item} doesPlayerHaveThis={doesPlayerHaveThis}  openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} playerItems={playerItems}/> 
+   return <ItemLine setGameview={setGameview} playerItemsQuantityMax= {playerItemsQuantityMax} upDateGameview={upDateGameview} item={item} doesPlayerHaveThis={doesPlayerHaveThis}  openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} playerItems={playerItems}/> 
 })}
     </section>
      <section className="gameButtons">
@@ -82,11 +83,11 @@ return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'}
      <button className={(this.props.isFinishGameButtonActive) ? 'finishGame' : 'hidden'} onClick={() =>this.finishGameButton()} name="finishGame" value="Finish Game">Pay Loan</button>
           <button className={(this.props.isMoveButtonActive) ? 'move' : 'hidden'} onClick={() => this.moveButton()} name="move" value="Move">MOVE</button></section>
      </section>
-     <BuyItemModal isActive={this.props.isBuyItemModalActive} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} increaseBuyQuantity={this.props.increaseBuyQuantity} decreaseQuantity={this.props.decreaseQuantity} addItem={this.props.addItem} />
+     <BuyItemModal isActive={this.props.isBuyItemModalActive} playerItemsQuantityMax= {this.props.playerItemsQuantityMax} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} increaseBuyQuantity={this.props.increaseBuyQuantity} decreaseQuantity={this.props.decreaseQuantity} addItem={this.props.addItem} />
     <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} cancelButton={cancelButton} increaseSellQuantity={this.props.increaseSellQuantity} decreaseQuantity={this.props.decreaseQuantity} funds={this.props.funds} payLoan={this.props.payLoan} />
     <LocationModal isActive={this.props.isLocationModalActive} locations= {this.props.locations} changeLocation={this.props.changeLocation} cancelButton={cancelButton} />
-    <SellItemModal isActive={this.props.isSellItemModalActive} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToSell={this.props.itemToSell} playerItems={this.props.playerItems} sellItem={this.props.sellItem} />
-    <PlayerBagModal isActive={this.props.isPlayerBagModalActive} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} playerItems={this.props.playerItems} />
+    <SellItemModal isActive={this.props.isSellItemModalActive} playerItemsQuantityMax= {this.props.playerItemsQuantityMax} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToSell={this.props.itemToSell} playerItems={this.props.playerItems} sellItem={this.props.sellItem} />
+    <PlayerBagModal isActive={this.props.isPlayerBagModalActive} playerItemsQuantityMax= {this.props.playerItemsQuantityMax} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} playerItems={this.props.playerItems} />
       </section>
         )
     }

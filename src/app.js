@@ -322,7 +322,7 @@ console.log(newPlayerItems);
             console.log(quantity);
             if (quantity == 0){
                 let playerItems =  this.state.playerItems;
-                let newPlayerItems = playerItems.filter(matchingItem => matchingItem.name == item.name);
+                let newPlayerItems = playerItems.filter(matchingItem => matchingItem.name !== item.name);
                 this.setState( {
                     playerItems: newPlayerItems,
                     funds: this.state.funds + cost,

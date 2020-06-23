@@ -1,5 +1,6 @@
 import React from 'react'
-
+import Slider from 'react-rangeslider'
+import 'react-rangeslider/lib/index.css'
 export default class BuyItemModal extends React.Component {
 
     constructor(props) {
@@ -16,7 +17,7 @@ export default class BuyItemModal extends React.Component {
         this.setState({
             item: nextProps.itemToBuy
         });
-this.resetCount();
+        this.resetCount();
     }
 
 
@@ -34,6 +35,12 @@ this.resetCount();
             count: count - 1
         }));
     };
+
+    handleOnChange = (value) => {
+        this.setState({
+            count: value
+        })
+    }
 
     addItem = (quantity, totalPrice) => {
         let itemToBuy = this.state.item;
@@ -60,21 +67,22 @@ this.resetCount();
         let item = this.state.item;
         let newTotal = this.state.item.price * this.state.count;
         let maxAmount = this.state.item.price / this.props.funds;
+        let { count } = this.state
 
         return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
             <section className="counter">How many do you want?
                <div className="counterInfo">
                     <div className="counterWindow">{this.state.count}</div><div className="counterButtons">
-                        <input type="range" name="quantity" min="1" max={maxAmount}></input>
-                            <button className={(newTotal + this.state.item.price < this.props.funds) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
-                            <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
+                        <Slider min="0" max={maxAmount} step="1" value={count} orientation="horizontal" onChange={this.handleOnChange} handleLabel={count}  />
+                        <button className={(newTotal + this.state.item.price < this.props.funds) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
+                        <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
                     </div>
-                        <h1> Total: {newTotal} </h1>
-                        <div className="counterInfo">
-                            <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.addItem(this.state.count, newTotal)}>OK</button>
-                            <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>
-                        </div>
+                    <h1> Total: {newTotal} </h1>
+                    <div className="counterInfo">
+                        <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.addItem(this.state.count, newTotal)}>OK</button>
+                        <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>
                     </div>
+                </div>
             </section>
         </div>
         )

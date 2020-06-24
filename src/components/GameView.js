@@ -70,8 +70,8 @@ let playerItemsQuantityMax= this.props.playerItemsQuantityMax;
 
 return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >    
 <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
-    <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30 <button className= "buy" onClick={() =>this.openPlayerBagModal()} name="buy" value="Buy">Your Items</button> </section>
-    <section className="location">{location}</section>
+    <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30 <button className= "playerItems" onClick={() =>this.openPlayerBagModal()} name="buy" value="Buy">Your Items</button> </section>
+    <section className="locationHeadline">{location}</section>
     <section className="items">
 {this.items.map(function (item) {
     console.log(doesPlayerHaveThis(item));

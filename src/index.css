@@ -27,6 +27,15 @@
         opacity: 100%;    }
   }
 
+  @font-face {
+    font-family: 'bebas_neueregular';
+    src: url('/fonts/bebasneue-regular-webfont.woff2') format('woff2'),
+         url('/fonts/bebasneue-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 
 body {
@@ -42,10 +51,22 @@ h1 {
     text-align: center;
 }
 
-/* #HeaderText {
+#HeaderText {
+    color: #fff;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight:bolder;
+    font-style:normal;
+    font-size: 3.5em;
     animation-duration: 3s;
-  animation-name: bounceIn;
-} */
+  animation-name: fadeIn;
+}
+
+.introParagraph{
+    color: #fff;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight:normal;
+    font-style:normal;
+}
 
 .container {
     display: block;
@@ -134,8 +155,8 @@ h1 {
 height: auto;
 }
 .mainSectionLanding {
-    padding: 35vh 2%;
-    background-color: coral;
+    padding: 15vh 2%;
+    background-color: rgb(0, 189, 47);
     height: 100vh;
     animation-duration: 3s;
     animation-name: bounceIn;

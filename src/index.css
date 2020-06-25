@@ -189,17 +189,18 @@ h2{
 .locationHeadline{
     width: 100%;
     margin: auto;
-    padding: 4%;
-    font-size: 4vw;
+    padding: 3% 0;
+    font-size: 7vw;
     color: white;
     border: none;
     background-color: darkgreen;
     font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight:bolder;
-    font-style:normal;
+    font-weight: bolder;
+    font-style: normal;
 }
 
 .locationList {
+    width: max-content;
     display: inline-grid;
     grid-template-columns: 1fr;
     padding: 1px 0.5em;
@@ -214,6 +215,11 @@ h2{
     padding: 1px 0.5em;
     float: right;
     clear: both;
+}
+.itemButtons {
+    display: inline-grid;
+    grid-template-columns: .5fr .5fr;
+    padding: 1px 0.5em;
 }
 
 .hidden {

@@ -1,5 +1,5 @@
 import React from 'react'
-import BuyItemModal from './BuyItemModal.js'
+import ItemButtons from './ItemButtons.js'
 import LoanModal from './LoanModal.js'
 import LocationModal from './LocationModal.js'
 
@@ -45,18 +45,16 @@ openSellItemModal = (item, price) => {
         return Math.floor(Math.random() * (priceMax - priceMin)) + priceMin;
     };
     let itemPrice = currentItemPrice(priceMin, priceMax);
-
+    let doesPlayerHaveThis= this.props.doesPlayerHaveThis(item);
     
        return <div className="itemLine"> 
        <div className="left" id={item.name}>
-           <div className="itemQuantity">{item.quantity}</div>
             <div className="itemName">{item.name}</div>
             </div>
     <div className="dotted"></div>
  
     <div className="right">${itemPrice} 
-    <button className= {(this.props.playerItemsQuantityMax > 0) ? 'buy' : 'hidden'} onClick={() =>this.openBuyItemModal(item.name, itemPrice)} name="buy" value="Buy">Buy</button>
-    <button className= {(this.props.doesPlayerHaveThis(item)) ? 'sell' : 'hidden'} onClick={() => this.openSellItemModal(item, itemPrice)} name="sell" value="Sell">Sell</button>
+    <ItemButtons openBuyItemModal={this.props.openBuyItemModal} openSellItemModal={this.props.openSellItemModal} item= {this.props.item} price={itemPrice} playerItemsQuantityMax={this.props.playerItemsQuantityMax} doesPlayerHaveThis= {doesPlayerHaveThis}  />
     </div>
     </div>
      

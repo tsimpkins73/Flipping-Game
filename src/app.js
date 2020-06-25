@@ -212,9 +212,9 @@ export default class App extends React.Component {
             let item = this.state.itemToBuy
         }
 
-        const itemName = item;
+        const itemName = item.name;
         const newItem = this.state.items.find(item => (item.name === itemName));
-        const itemToBuy = { name: newItem.name, quantity: 0, price: price }
+        const itemToBuy = { name: item.name, quantity: 0, price: price }
         this.setState({
             itemToBuy: itemToBuy,
             isBuyItemModalActive: true,

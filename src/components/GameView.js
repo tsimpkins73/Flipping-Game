@@ -5,6 +5,7 @@ import LoanModal from './LoanModal.js'
 import LocationModal from './LocationModal.js'
 import PlayerBagModal from './PlayerBagModal.js'
 import ItemLine from './ItemLine.js'
+import ItemButtons from './ItemButtons.js'
 
 export default class GameView extends React.Component {
     
@@ -74,8 +75,18 @@ return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'}
     <section className="locationHeadline">{location}</section>
     <section className="items">
 {this.items.map(function (item) {
+      let priceMin = item.minPrice;
+ let priceMax = item.maxPrice;
+ function currentItemPrice(priceMin, priceMax) {
+     return Math.floor(Math.random() * (priceMax - priceMin)) + priceMin;
+ };
+ const itemPrice = currentItemPrice(priceMin, priceMax);
+
     console.log(doesPlayerHaveThis(item));
-   return <ItemLine setGameview={setGameview} playerItemsQuantityMax= {playerItemsQuantityMax} upDateGameview={upDateGameview} item={item} doesPlayerHaveThis={doesPlayerHaveThis}  openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} playerItems={playerItems}/> 
+   return <div className="itemLineContainer">
+       <ItemLine setGameview={setGameview} playerItemsQuantityMax= {playerItemsQuantityMax} price={itemPrice} upDateGameview={upDateGameview} item={item} doesPlayerHaveThis={doesPlayerHaveThis}  openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} playerItems={playerItems}/>
+   <ItemButtons setGameview={setGameview} openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} item= {item} price={itemPrice} playerItems={playerItems} playerItemsQuantityMax= {playerItemsQuantityMax} doesPlayerHaveThis= {doesPlayerHaveThis}  />
+   </div>
 })}
     </section>
      <section className="gameButtons">

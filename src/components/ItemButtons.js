@@ -2,48 +2,45 @@ import React from 'react'
 import BuyItemModal from './BuyItemModal.js'
 import LoanModal from './LoanModal.js'
 import LocationModal from './LocationModal.js'
-
+import { useState, useEffect, useRef } from 'react';
 
 export default class ItemButtons extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isSellActive: false,
+            price: 0
         };;
       }
 
       componentWillReceiveProps(nextProps) {
           console.log(nextProps.item)
-if (this.props.doesPlayerHaveThis){
+if (this.props.doesPlayerHaveThis(nextProps.item)){
     console.log("GOT IT!")
     this.setState({
-        isSellActive: true
+        isSellActive: true,
+        price: this.props.price
 });
 }else{
     this.setState({
-        isSellActive: false
+        isSellActive: false,
+        price: this.props.price
 });
 }
     }
 
-    shouldComponentUpdate = (newProps) => {
-        if (newProps.doesPlayerHaveThis){
+    shouldComponentUpdate = () => {
+        
         return true;
-    }else{
-        return false;
-        }
         };
 
-openBuyItemModal = () => {
-    let item= this.props.item;
-    let price= this.props.price; 
-    console.log(price);
+        openBuyItemModal = (item, price) => {
+       console.log(price);
         this.props.openBuyItemModal(item, price);
       };
 
-openSellItemModal = () => {
-    let item= this.props.item;
-    let price= this.props.price;      
+openSellItemModal = (item, price) => {
+    console.log(price);    
     this.props.openSellItemModal(item, price);
         };
 
@@ -51,12 +48,12 @@ openSellItemModal = () => {
             let item =this.props.item;
         let priceMin = item.minPrice;
     
-    let itemPrice = this.props.price;
+    let itemPrice = this.state.price;
 
     
        return <div className="itemButtons"> 
-           <button className= {(this.props.playerItemsQuantityMax > 0) ? 'buy' : 'hidden'} onClick={() =>this.openBuyItemModal()} name="buy" value="Buy">Buy</button>
-    <button className= {(this.state.isSellActive) ? 'sell' : 'hidden'} onClick={() => this.openSellItemModal()} name="sell" value="Sell">Sell</button>
+           <button className= {(this.props.playerItemsQuantityMax > 0) ? 'buy' : 'hidden'} onClick={() =>this.openBuyItemModal(this.props.item, itemPrice)} name="buy" value="Buy">Buy</button>
+    <button className= {(this.state.isSellActive) ? 'sell' : 'hidden'} onClick={() => this.openSellItemModal(this.props.item, itemPrice)} name="sell" value="Sell">Sell</button>
     </div>     
     }
 }

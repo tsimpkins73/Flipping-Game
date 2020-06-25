@@ -39,22 +39,15 @@ openSellItemModal = (item, price) => {
 
     render() {
             let item =this.props.item;
-        let priceMin = item.minPrice;
-    let priceMax = item.maxPrice;
-    function currentItemPrice(priceMin, priceMax) {
-        return Math.floor(Math.random() * (priceMax - priceMin)) + priceMin;
-    };
-    let itemPrice = currentItemPrice(priceMin, priceMax);
+            let itemPrice = this.props.price;
     let doesPlayerHaveThis= this.props.doesPlayerHaveThis(item);
     
        return <div className="itemLine"> 
        <div className="left" id={item.name}>
             <div className="itemName">{item.name}</div>
             </div>
-    <div className="dotted"></div>
- 
+    
     <div className="right">${itemPrice} 
-    <ItemButtons openBuyItemModal={this.props.openBuyItemModal} openSellItemModal={this.props.openSellItemModal} item= {this.props.item} price={itemPrice} playerItemsQuantityMax={this.props.playerItemsQuantityMax} doesPlayerHaveThis= {doesPlayerHaveThis}  />
     </div>
     </div>
      

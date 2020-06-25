@@ -89,20 +89,25 @@ margin: 2%;
     background-color: rgb(0, 189, 47);
     height: 100vh;
 }
-.itemLine{
+.itemLineContainer{
     display: inline-grid;
-    grid-template-columns: .75fr 1fr .5fr;
+    grid-template-columns:  1.5fr .5fr;
     width: 100%;
     padding: 2% 0 2%;
-    animation-duration: 1s;
-    animation-name: fadeIn;
 }
+
+.itemLine{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    animation-duration: 2s;
+    animation-name: slideIn;
+}
+
 
 
 .right {
     display: inline-grid;
-    grid-template-columns: 1fr .5fr .5fr;
-    grid-column-gap: 5%;
     padding: 3px 0.5em;
     background: #fff;
     float: right;
@@ -111,10 +116,8 @@ margin: 2%;
 
 .left {
     display: inline-grid;
-    grid-template-columns: auto auto;
     font-size: auto;
     background: #fff;
-    grid-column-gap: 5%;
     padding: 3px;
     height: auto;
     float: left;

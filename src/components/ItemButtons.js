@@ -12,19 +12,25 @@ export default class ItemButtons extends React.Component {
             price: 0
         };;
       }
-
-      componentWillReceiveProps(nextProps) {
-          console.log(nextProps.item)
-if (this.props.doesPlayerHaveThis(nextProps.item)){
-    console.log("GOT IT!")
+componentDidMount= () =>{
     this.setState({
         isSellActive: true,
         price: this.props.price
 });
+}
+      componentWillReceiveProps(nextProps) {
+          console.log(nextProps.item)
+          let oldPrice = this.state.price;
+if (this.props.doesPlayerHaveThis(nextProps.item)){
+    console.log("GOT IT!")
+    this.setState({
+        isSellActive: true,
+        price: oldPrice
+});
 }else{
     this.setState({
         isSellActive: false,
-        price: this.props.price
+        price: oldPrice
 });
 }
     }

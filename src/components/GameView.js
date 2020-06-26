@@ -68,6 +68,7 @@ let setGameview = this.props.setGameview;
 let upDateGameview = this.props.upDateGameview;
 let doesPlayerHaveThis= this.props.doesPlayerHaveThis;
 let playerItemsQuantityMax= this.props.playerItemsQuantityMax;
+let currentDay= this.props.currentDay;
 
 return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >    
 <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
@@ -85,8 +86,8 @@ return ( <section className={(this.props.isActive) ? 'gameContainer' : 'hidden'}
     console.log(doesPlayerHaveThis(item));
    return <div className="itemLineContainer">
        <ItemLine setGameview={setGameview} playerItemsQuantityMax= {playerItemsQuantityMax} price={itemPrice} upDateGameview={upDateGameview} item={item} doesPlayerHaveThis={doesPlayerHaveThis}  openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} playerItems={playerItems}/>
-   <ItemButtons setGameview={setGameview} openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} item= {item} price={itemPrice} playerItems={playerItems} playerItemsQuantityMax= {playerItemsQuantityMax} doesPlayerHaveThis= {doesPlayerHaveThis}  />
-   </div>
+   <ItemButtons currentDay={currentDay} setGameview={setGameview} openBuyItemModal={openBuyItemModal} openSellItemModal={openSellItemModal} item= {item} price={itemPrice} playerItems={playerItems} playerItemsQuantityMax= {playerItemsQuantityMax} doesPlayerHaveThis= {doesPlayerHaveThis}  />
+     </div>
 })}
     </section>
      <section className="gameButtons">

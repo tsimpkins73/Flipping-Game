@@ -9,36 +9,47 @@ export default class ItemButtons extends React.Component {
         super(props);
         this.state = {
             isSellActive: false,
-            price: 0
+            price: 0,
+            currentDay: 0
         };;
       }
 componentDidMount= () =>{
     this.setState({
         isSellActive: true,
-        price: this.props.price
+        price: this.props.price,
+        currentDay: this.props.currentDay
 });
 }
       componentWillReceiveProps(nextProps, prevState) {
-          console.log(nextProps.item)
+        console.log(this.state.currentDay)  
+        console.log(nextProps.currentDay);
+        console.log(nextProps.item.price);
           let oldPrice = this.state.price;
-if (this.props.doesPlayerHaveThis(nextProps.item)){
+if (nextProps.currentDay > this.state.currentDay){
     console.log("GOT IT!")
-    if (nextProps.currentDay > this.props.currentDay){
+    if (this.props.doesPlayerHaveThis(nextProps.item)){
     this.setState({
         isSellActive: true,
         price: nextProps.item.price
 });
 }else{
-    this.setState({
-        isSellActive: true,
-        price: prevState.item.price
-});
+    this.setState(prevState => ({
+        isSellActive: false,
+        price: nextProps.item.price
+}));
 }
 }else{
-    this.setState({
-        isSellActive: false,
-        price: prevState.item.price
-});
+    if (this.props.doesPlayerHaveThis(nextProps.item)){
+        this.setState(prevState => ({
+            isSellActive: true,
+            price: prevState.price
+    }));
+    }else{
+        this.setState(prevState => ({
+            isSellActive: false,
+            price: prevState.price
+    }));
+    }
 }
     }
 
@@ -61,7 +72,7 @@ openSellItemModal = (item, price) => {
             let item =this.props.item;
         let priceMin = item.minPrice;
     
-    let itemPrice = this.state.price;
+    let itemPrice = this.props.price;
 
     
        return <div className="itemButtons"> 

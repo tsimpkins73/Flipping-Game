@@ -144,7 +144,7 @@ export default class App extends React.Component {
             currentLocation: 'Business District',
             funds: 500,
             loan: 500,
-            currentDay: 1,
+            currentDay: 0,
             selectedQuantity: 0,
             currentTotal: 0,
             itemToBuy: {
@@ -190,6 +190,7 @@ export default class App extends React.Component {
     }
 
     startGame = () => {
+        this.changeDay();
         this.setState({
             funds: 500,
             loan: 500,

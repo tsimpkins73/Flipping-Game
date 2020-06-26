@@ -44,7 +44,15 @@ export default class BuyItemModal extends React.Component {
         })
     }
 
-    addItem = (quantity, totalPrice) => {
+    handleChangeStart = () => {
+ 
+      };
+    
+      handleChangeComplete = () => {
+  
+      };
+
+      addItem = (quantity, totalPrice) => {
         let itemToBuy = this.state.item;
         console.log('ADD ITEM ' + itemToBuy + " " + quantity + " " + totalPrice);
         this.props.addItem(itemToBuy, quantity, totalPrice);
@@ -65,17 +73,16 @@ export default class BuyItemModal extends React.Component {
 
 
     render() {
-        console.log(this.props.itemToBuy);
-        let item = this.state.item;
+          let item = this.state.item;
         let newTotal = this.state.item.price * this.state.count;
-        let maxAmount = Math.max(this.props.playerItemsQuantityMax, Math.floor(this.state.item.price/ this.props.funds));
+        let maxAmount = Math.min(this.props.playerItemsQuantityMax, Math.floor(this.props.funds / this.state.item.price));
         let { count } = this.state;
-        console.log(maxAmount);
+   
 
         return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
             <section className="counter">How many do you want?
                <div className="counterInfo">
-               <Slider min="0" max={maxAmount} value={count} orientation="horizontal" step="1" onChange={this.handleOnChange} handleLabel={count}  />
+               <Slider min={0} max={maxAmount} value={count} orientation="horizontal" step={1} onChangeStart={this.handleChangeStart} onChange={this.handleOnChange} onChangeComplete={this.handleChangeComplete} handleLabel={count}  />
                     <div className="counterWindow">{this.state.count}</div><div className="counterButtons">
                     
                  {/*        <button className={(newTotal + this.state.item.price < this.props.funds && this.state.count < maxAmount) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>

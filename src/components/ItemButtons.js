@@ -18,19 +18,26 @@ componentDidMount= () =>{
         price: this.props.price
 });
 }
-      componentWillReceiveProps(nextProps) {
+      componentWillReceiveProps(nextProps, prevState) {
           console.log(nextProps.item)
           let oldPrice = this.state.price;
 if (this.props.doesPlayerHaveThis(nextProps.item)){
     console.log("GOT IT!")
+    if (nextProps.currentDay > this.props.currentDay){
     this.setState({
         isSellActive: true,
-        price: oldPrice
+        price: nextProps.item.price
 });
 }else{
     this.setState({
+        isSellActive: true,
+        price: prevState.item.price
+});
+}
+}else{
+    this.setState({
         isSellActive: false,
-        price: oldPrice
+        price: prevState.item.price
 });
 }
     }

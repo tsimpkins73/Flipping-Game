@@ -69,16 +69,18 @@ export default class BuyItemModal extends React.Component {
         let item = this.state.item;
         let newTotal = this.state.item.price * this.state.count;
         let maxAmount = Math.max(this.props.playerItemsQuantityMax, Math.floor(this.state.item.price/ this.props.funds));
-        let { count } = this.state
+        let { count } = this.state;
+        console.log(maxAmount);
 
         return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
             <section className="counter">How many do you want?
                <div className="counterInfo">
+               <Slider min="0" max={maxAmount} value={count} orientation="horizontal" step="1" onChange={this.handleOnChange} handleLabel={count}  />
                     <div className="counterWindow">{this.state.count}</div><div className="counterButtons">
-                        <Slider min="0" max={maxAmount} value={count} orientation="horizontal" onChange={this.handleOnChange} handleLabel={count}  />
-                        <button className={(newTotal + this.state.item.price < this.props.funds && this.state.count < maxAmount) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
+                    
+                 {/*        <button className={(newTotal + this.state.item.price < this.props.funds && this.state.count < maxAmount) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
                         <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
-                    </div>
+                  */}   </div>
                     <h1> Total: {newTotal} </h1>
                     <div className="counterInfo">
                         <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.addItem(this.state.count, newTotal)}>OK</button>

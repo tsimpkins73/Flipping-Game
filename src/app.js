@@ -191,6 +191,7 @@ export default class App extends React.Component {
 
     startGame = () => {
         this.changeDay();
+        this.setPrices();
         this.setState({
             funds: 500,
             loan: 500,
@@ -204,6 +205,21 @@ export default class App extends React.Component {
         });
     }
 
+    setPrices = () => {
+        let itemsList = this.state.items.map(function (item) {
+            let priceMin = item.minPrice;
+            let priceMax = item.maxPrice;
+            function currentItemPrice(priceMin, priceMax) {
+                return Math.floor(Math.random() * (priceMax - priceMin)) + priceMin;
+            };
+            let itemPrice = currentItemPrice(priceMin, priceMax);
+            let itemName = item.name;
+            return { name: itemName, minPrice: item.minPrice, maxPrice: item.minPrice, price: itemPrice }
+        });
+        this.setState({
+            items: itemsList,
+        });
+    }
 
        openBuyItemModal = (item, price) => {
         console.log(item)
@@ -410,6 +426,7 @@ console.log(newPlayerItems);
 
     changeDay = () => {
         ++this.state.currentDay
+        this.setPrices();
         
         console.log("IT IS NOW DAY " + this.state.currentDay);
         if (this.state.loan != 0) {

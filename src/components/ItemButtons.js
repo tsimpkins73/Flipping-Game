@@ -21,43 +21,18 @@ componentDidMount= () =>{
 });
 }
       componentWillReceiveProps(nextProps, prevState) {
-        console.log(this.state.currentDay)  
-        console.log(nextProps.currentDay);
-        console.log(nextProps.item.price);
-          let oldPrice = this.state.price;
-if (nextProps.currentDay > this.state.currentDay){
-    console.log("GOT IT!")
     if (this.props.doesPlayerHaveThis(nextProps.item)){
     this.setState({
         isSellActive: true,
-        price: nextProps.item.price
 });
 }else{
-    this.setState(prevState => ({
+    this.setState({
         isSellActive: false,
-        price: nextProps.item.price
-}));
-}
-}else{
-    if (this.props.doesPlayerHaveThis(nextProps.item)){
-        this.setState(prevState => ({
-            isSellActive: true,
-            price: prevState.price
-    }));
-    }else{
-        this.setState(prevState => ({
-            isSellActive: false,
-            price: prevState.price
-    }));
-    }
-}
-    }
+  
+});
+}   }
 
-    shouldComponentUpdate = () => {
-        
-        return true;
-        };
-
+ 
         openBuyItemModal = (item, price) => {
        console.log(price);
         this.props.openBuyItemModal(item, price);

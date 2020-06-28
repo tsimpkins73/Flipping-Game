@@ -79,23 +79,21 @@ export default class BuyItemModal extends React.Component {
         let { count } = this.state;
    
 
-        return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
+        return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}>
+            <div className="modalInfoContainer"> <h2 className="itemName">{this.state.item.name} Price: ${this.state.item.price}</h2>
             <section className="counter">How many do you want?
                <div className="counterInfo">
                <Slider min={0} max={maxAmount} value={count} orientation="horizontal" step={1} onChangeStart={this.handleChangeStart} onChange={this.handleOnChange} onChangeComplete={this.handleChangeComplete} handleLabel={count}  />
-                    <div className="counterWindow">{this.state.count}</div><div className="counterButtons">
-                    
-                 {/*        <button className={(newTotal + this.state.item.price < this.props.funds && this.state.count < maxAmount) ? "incrButton" : 'hidden'} name="increase" value="increase" onClick={() => this.increaseButton()}>+</button>
-                        <button className={(this.state.count > 0) ? "decrButton" : 'hidden'} name="decrease" value="decrease" onClick={() => this.decreaseButton()}>-</button>
-                  */}   </div>
-                    <h1> Total: {newTotal} </h1>
-                    <div className="counterInfo">
+                    <h1>Total: {newTotal}</h1>
+                   <div className="counterInfo">
                         <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.addItem(this.state.count, newTotal)}>OK</button>
                         <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>
                     </div>
                 </div>
             </section>
+            </div>
         </div>
+
         )
     }
 }

@@ -64,14 +64,11 @@ handleChangeStart = () => {
         let maxAmount = this.state.item.quantity;
         let { count } = this.state;
         
-        return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price:${this.state.item.price}</h2>
+        return (<div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 className="itemName">{this.state.item.name} Price: ${this.state.item.price}</h2>
             <section className="counter">How many do you want to sell?
                <div className="counterInfo">
                <Slider min={0} max={maxAmount} value={count} orientation="horizontal" step={1} onChangeStart={this.handleChangeStart} onChange={this.handleOnChange} onChangeComplete={this.handleChangeComplete} handleLabel={count}  />
-
-                    <div className="counterWindow">{this.state.count}</div><div className="counterButtons">
-                         </div>
-                    Total: {newTotal}
+                    <h1>Total: {newTotal}</h1>
                     <div className="counterInfo">
                         <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.sellItem(this.state.count, newTotal)}>OK</button>
                         <button className="cancel" id="cancel" name="cancel" onClick={() => this.cancelButton()} value="cancel">CANCEL</button>

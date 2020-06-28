@@ -1,36 +1,37 @@
-
-
-
-
 @keyframes bounceIn {
     0% {
-      transform: scale(0.1);
-      opacity: 0;
+        transform: scale(0.1);
+        opacity: 0;
     }
-    60% {
-      transform: scale(1.2);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
     }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
     50% {
         opacity: 50%;
     }
-    100% {
-        opacity: 100%;    }
-  }
 
-  @font-face {
+    100% {
+        opacity: 100%;
+    }
+}
+
+@font-face {
     font-family: 'bebas_neueregular';
     src: url('/fonts/bebasneue-regular-webfont.woff2') format('woff2'),
-         url('/fonts/bebasneue-regular-webfont.woff') format('woff');
+        url('/fonts/bebasneue-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -55,20 +56,20 @@ h1 {
 #HeaderText {
     color: #fff;
     font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight:bolder;
-    font-style:normal;
+    font-weight: bolder;
+    font-style: normal;
     font-size: 3.5em;
     animation-duration: 3s;
-  animation-name: fadeIn;
-text-shadow: 1px 1px 3px black;
-margin: 2%;
+    animation-name: fadeIn;
+    text-shadow: 1px 1px 3px black;
+    margin: 2%;
 }
 
-.introParagraph{
+.introParagraph {
     color: #fff;
     font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight:normal;
-    font-style:normal;
+    font-weight: normal;
+    font-style: normal;
     margin: 3%;
 }
 
@@ -85,18 +86,25 @@ margin: 2%;
     text-align: center;
 }
 
-.mainSectionContainer{
+.mainSectionContainer {
     background-color: rgb(0, 189, 47);
     height: 100vh;
 }
-.itemLineContainer{
+
+.itemLineContainer {
     display: inline-grid;
-    grid-template-columns:  1.5fr .5fr;
+    grid-template-columns: 1.5fr .5fr;
     width: 100%;
     padding: 2% 0 2%;
 }
 
-.itemLine{
+.modalInfoContainer {
+    height: auto;
+    margin: auto;
+    padding: 2%;
+}
+
+.itemLine {
     display: inline-grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
@@ -127,14 +135,14 @@ margin: 2%;
 
 }
 
-.itemQuantity{
+.itemQuantity {
     width: auto;
     height: auto;
     font-size: 5vw;
     text-align: left;
 }
 
-.itemName{
+.itemName {
     width: auto;
     height: auto;
     font-size: 5vw;
@@ -164,8 +172,9 @@ margin: 2%;
 
 
 .locationsContainer {
-height: auto;
+    height: auto;
 }
+
 .mainSectionLanding {
     margin: auto;
     padding: 20vh 2%;
@@ -175,7 +184,7 @@ height: auto;
 }
 
 
-h2{
+h2 {
     margin: 0;
 }
 
@@ -189,7 +198,7 @@ h2{
     grid-template-columns: 4fr 1fr .5fr;
 }
 
-.locationHeadline{
+.locationHeadline {
     width: 100%;
     margin: auto;
     padding: 3% 0;
@@ -219,10 +228,12 @@ h2{
     float: right;
     clear: both;
 }
+
 .itemButtons {
     display: inline-grid;
     grid-template-columns: .5fr .5fr;
     padding: 1px 0.5em;
+    grid-column-gap: 4%;
 }
 
 .hidden {
@@ -230,44 +241,46 @@ h2{
 }
 
 .itemInfo {
-    background-color:rgba(0, 112, 19, 0.9);
+    background-color: rgba(0, 112, 19, 0.9);
     margin: auto;
     padding: 20% 5%;
     border: 1px solid #888;
     box-shadow: 2px 2px 2px black;
     width: 80%;
     display: block;
-    height: 50%;
+    height: auto;
     text-align: center;
-color: white;
-z-index: 1;
-position: absolute;
-left: 50%;
-top: 50%;
-transform: translate(-50%, -50%); 
-            -webkit-animation-name: modal-animation; 
-            -webkit-animation-duration: 0.5s; 
-            animation-name: modal-animation; 
-            animation-duration: 0.5s; 
+    color: white;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-animation-name: modal-animation;
+    -webkit-animation-duration: 0.5s;
+    animation-name: modal-animation;
+    animation-duration: 0.5s;
 }
 
-@-webkit-keyframes modal-animation { 
-    from { 
-        opacity: 0; 
-    } 
-    to {  
-        opacity: 1; 
-    } 
-} 
-  
-@keyframes modal-animation { 
-    from { 
-        opacity: 0; 
-    } 
-    to { 
-        opacity: 1; 
-    } 
-} 
+@-webkit-keyframes modal-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 button.playerItems {
     width: 40vw;
@@ -278,10 +291,10 @@ button.playerItems {
     border: none;
     background-color: darkgreen;
     font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight:bolder;
-    font-style:normal;
+    font-weight: bolder;
+    font-style: normal;
     box-shadow: 1px 1px 3px black;
-    }
+}
 
 button.start {
     width: 40vw;
@@ -292,10 +305,10 @@ button.start {
     border: none;
     background-color: darkgreen;
     font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight:bolder;
-    font-style:normal;
+    font-weight: bolder;
+    font-style: normal;
     box-shadow: 1px 1px 3px black;
-    }
+}
 
 
 button.buy,
@@ -308,33 +321,33 @@ button.sell {
     border: none;
     background-color: darkgreen;
     font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight:bolder;
-    font-style:normal;
+    font-weight: bolder;
+    font-style: normal;
     box-shadow: 1px 1px 3px black;
-    }
+}
 
-    button.loan,
-    button.cancel,
-    button.ok,
-    button.incrButton,
-    button.decrButton {
-        width: 25vw;
-        margin: 1.5%;
-        padding: 2%;
-        font-size: 4vw;
-        color: white;
-        border: none;
-        background-color: darkgreen;
-        font-family: 'bebas_neueregular', Arial, sans-serif;
-        font-weight:bolder;
-        font-style:normal;
-        box-shadow: 1px 1px 3px black;
-        }
-    
+button.loan,
+button.cancel,
+button.ok,
+button.incrButton,
+button.decrButton {
+    width: 25vw;
+    margin: 1.5%;
+    padding: 2%;
+    font-size: 4vw;
+    color: white;
+    border: none;
+    background-color: darkgreen;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+    box-shadow: 1px 1px 3px black;
+}
 
-.gameContainer{
-    margin-top:0;
-    z-index:0;
+
+.gameContainer {
+    margin-top: 0;
+    z-index: 0;
 
 }
 
@@ -347,20 +360,20 @@ button.move {
     border: none;
     background-color: darkgreen;
     font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight:bolder;
-    font-style:normal;
+    font-weight: bolder;
+    font-style: normal;
     box-shadow: 1px 1px 3px black;
-    }
+}
 
-.gameContainerBlurred{
-    margin-top:0;
+.gameContainerBlurred {
+    margin-top: 0;
     z-index: -1;
     filter: blur(1.5rem);
     position: absolute;
     width: 100%;
 }
 
-.selectLocationButton{
+.selectLocationButton {
     background: rgb(180, 219, 118);
     margin: auto;
     padding: 3%;
@@ -369,7 +382,8 @@ button.move {
     border: 0;
 }
 
-button.incrButton, button.decrButton{
+button.incrButton,
+button.decrButton {
     width: 40px;
     height: 40px;
     padding: auto;
@@ -380,22 +394,23 @@ button.incrButton, button.decrButton{
     justify-content: space-between;
 }
 
-.counterWindow, .counterButtons{
+.counterWindow,
+.counterButtons {
     display: inline-block;
     width: 50%;
     margin: auto;
     height: 100px;
-    
+
 }
 
-.counter{
+.counter {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-size: 5vw;
 }
 
-.counterInfo{
+.counterInfo {
     height: auto;
     justify-content: center;
 }

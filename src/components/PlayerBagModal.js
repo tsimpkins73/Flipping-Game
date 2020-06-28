@@ -17,7 +17,10 @@ this.props.cancelButton();
                               <div className="locationsContainer"> <p>You have room for {this.props.playerItemsQuantityMax} more items in your bag.</p>{this.props.playerItems.map(function (item) {
                    console.log(item);
        return <div className="location"> 
-       <div className="playerItemList" id={item.name}>{item.name} {item.quantity} {item.price}</div>
+       <div className="playerItemList" id={item.name}>{item.name}</div>
+       <div className="playerItemList" id={item.name}>{item.quantity} </div>
+       
+       <div className="playerItemList" id={item.name}>{item.price}</div>
            </div>
       
 })}

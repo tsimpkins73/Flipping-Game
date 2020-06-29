@@ -60,7 +60,7 @@ h1 {
     font-style: normal;
     font-size: 3.5em;
     animation-duration: 3s;
-    animation-name: fadeIn;
+    animation-name: bounceIn;
     text-shadow: 1px 1px 3px black;
     margin: 2%;
 }

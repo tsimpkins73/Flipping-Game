@@ -195,7 +195,10 @@ h2 {
 
 .location {
     display: inline-grid;
-    grid-template-columns: 4fr 1fr .5fr;
+    width: -webkit-fill-available;
+    grid-template-columns: 4fr .5fr .5fr;
+    grid-column-gap: 7%;
+    justify-content: center;
 }
 
 .locationHeadline {
@@ -243,7 +246,7 @@ h2 {
 .itemInfo {
     background-color: rgba(0, 112, 19, 0.9);
     margin: auto;
-    padding: 20% 5%;
+    padding: 5%;
     border: 1px solid #888;
     box-shadow: 2px 2px 2px black;
     width: 80%;
@@ -330,7 +333,8 @@ button.loan,
 button.cancel,
 button.ok,
 button.incrButton,
-button.decrButton {
+button.decrButton,
+button.finishGame {
     width: 25vw;
     margin: 1.5%;
     padding: 2%;

@@ -116,7 +116,7 @@ export default class GameView extends React.Component {
                 </section>
                 <section className="gameButtons">
                     <button className={(this.props.isPayLoanButtonActive) ? 'loan' : 'hidden'} onClick={() => this.openLoanModal()} name="payLoan" value="Pay Loan">Pay Loan</button>
-                    <button className={(this.props.isFinishGameButtonActive) ? 'finishGame' : 'hidden'} onClick={() => this.finishGameButton()} name="finishGame" value="Finish Game">Pay Loan</button>
+                    <button className={(this.props.isFinishGameButtonActive) ? 'finishGame' : 'hidden'} onClick={() => this.finishGameButton()} name="finishGame" value="Finish Game">Finish Game</button>
                     <button className={(this.props.isMoveButtonActive) ? 'move' : 'hidden'} onClick={() => this.moveButton()} name="move" value="Move">MOVE</button></section>
             </section>
             <BuyItemModal isActive={this.props.isBuyItemModalActive} playerItemsQuantityMax={this.props.playerItemsQuantityMax} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} increaseBuyQuantity={this.props.increaseBuyQuantity} decreaseQuantity={this.props.decreaseQuantity} addItem={this.props.addItem} />

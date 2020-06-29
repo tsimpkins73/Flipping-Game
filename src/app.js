@@ -202,7 +202,8 @@ export default class App extends React.Component {
             isLocationButtonActive: true,
             isPayLoanButtonActive: true,
             upDateGameview: true,
-            isFinishPageActive: false
+            isFinishPageActive: false,
+            isGameViewBlurred: false,
         });
     }
 

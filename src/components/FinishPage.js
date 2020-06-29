@@ -3,7 +3,8 @@ import React from 'react'
 export default class FinishPage extends React.Component {
     
     render() {
-               return ( <section className={(this.props.isActive) ? 'mainSectionLanding' : 'hidden'} >
+               return (< section className = {(this.props.isActive) ? 'mainSectionContainer' : 'hidden'} >  
+               <section className={(this.props.isActive) ? 'mainSectionLanding' : 'hidden'} >
         <h1 id="HeaderText">Flipping Wars</h1>
 
 
@@ -12,6 +13,7 @@ export default class FinishPage extends React.Component {
                 <button class="start" onClick={this.props.startButton} id="startGameButton" name="Start Game" value="Start Game">New
                     Game</button>
 
+    </section>
     </section>)
     
     };

@@ -426,7 +426,6 @@ console.log(newPlayerItems);
 
     changeDay = () => {
         ++this.state.currentDay
-        this.setPrices();
         
         console.log("IT IS NOW DAY " + this.state.currentDay);
         if (this.state.loan != 0) {
@@ -438,6 +437,7 @@ console.log(newPlayerItems);
 
 
     changeLocation = (location) => {
+        this.setPrices();
         this.setState({
             currentLocation: location
         });

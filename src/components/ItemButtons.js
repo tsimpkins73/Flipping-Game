@@ -15,8 +15,7 @@ export default class ItemButtons extends React.Component {
       }
 componentDidMount= () =>{
     this.setState({
-        isSellActive: true,
-        price: this.props.price,
+         price: this.props.price,
         currentDay: this.props.currentDay
 });
 }

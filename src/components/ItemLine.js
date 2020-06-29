@@ -14,18 +14,6 @@ export default class ItemLine extends React.Component {
         this.props.setGameview();
     };
 
-    shouldComponentUpdate = (newProps) => {
-        
-if(!newProps.upDateGameview){
-return false;
-} else{
-    return true;
-}
-};
-
-
-
-
 
 openBuyItemModal = (item, price) => {
     console.log('Open');

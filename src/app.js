@@ -214,7 +214,7 @@ export default class App extends React.Component {
             };
             let itemPrice = currentItemPrice(priceMin, priceMax);
             let itemName = item.name;
-            return { name: itemName, minPrice: item.minPrice, maxPrice: item.minPrice, price: itemPrice }
+            return { name: itemName, minPrice: item.minPrice, maxPrice: item.maxPrice, price: itemPrice }
         });
         this.setState({
             items: itemsList,

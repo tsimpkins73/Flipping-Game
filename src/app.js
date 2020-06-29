@@ -216,6 +216,7 @@ export default class App extends React.Component {
             let itemName = item.name;
             return { name: itemName, minPrice: item.minPrice, maxPrice: item.maxPrice, price: itemPrice }
         });
+        console.log(itemsList);
         this.setState({
             items: itemsList,
         });

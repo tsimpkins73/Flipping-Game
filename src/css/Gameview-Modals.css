@@ -1,0 +1,307 @@
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 50%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+@font-face {
+    font-family: 'bebas_neueregular';
+    src: url('/fonts/bebasneue-regular-webfont.woff2') format('woff2'),
+        url('/fonts/bebasneue-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+body {
+    margin: 0;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+}
+
+
+div {
+    height: 1em;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+.container {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.mainSection {
+    width: 90%;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+
+.itemLineContainer {
+    display: inline-grid;
+    grid-template-columns: 1.5fr .5fr;
+    width: 100%;
+    padding: 2% 0 2%;
+}
+
+.itemLine {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    animation-duration: 2s;
+    animation-name: slideIn;
+}
+
+.itemName {
+    width: auto;
+    height: auto;
+    font-size: 5vw;
+    text-align: center;
+}
+
+.modalInfoContainer {
+    height: auto;
+    margin: auto;
+    padding: 2%;
+}
+
+.right {
+    display: inline-grid;
+    padding: 3px 0.5em;
+    background: #fff;
+    float: right;
+    justify-content: end;
+}
+
+.left {
+    display: inline-grid;
+    font-size: auto;
+    background: #fff;
+    padding: 3px;
+    height: auto;
+    float: left;
+    clear: both;
+    justify-content: start;
+    white-space: nowrap;
+
+}
+
+.location,
+.gameButtons,
+.playerInfo,
+.items,
+.locationsContainer {
+    margin: auto;
+    padding: 3%;
+    text-align: center;
+    font-size: 5vw;
+}
+
+
+h2 {
+    margin: 0;
+}
+
+
+.playerInfo {
+    background: rgb(216, 255, 152);
+}
+
+
+
+.itemButtons {
+    display: inline-grid;
+    grid-template-columns: .5fr .5fr;
+    padding: 1px 0.5em;
+    grid-column-gap: 4%;
+}
+
+.hidden {
+    display: none;
+}
+
+.itemInfo {
+    background-color: rgba(0, 112, 19, 0.9);
+    margin: auto;
+    padding: 5%;
+    border: 1px solid #888;
+    box-shadow: 2px 2px 2px black;
+    width: 80%;
+    display: block;
+    height: auto;
+    text-align: center;
+    color: white;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-animation-name: modal-animation;
+    -webkit-animation-duration: 0.5s;
+    animation-name: modal-animation;
+    animation-duration: 0.5s;
+}
+
+@-webkit-keyframes modal-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+button.playerItems {
+    width: 40vw;
+    margin: 2% auto;
+    padding: 4%;
+    font-size: 4vw;
+    color: white;
+    border: none;
+    background-color: darkgreen;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+    box-shadow: 1px 1px 3px black;
+}
+
+
+
+button.buy,
+button.sell {
+    width: 15vw;
+    margin: 1.5% auto;
+    padding: 2%;
+    font-size: 4vw;
+    color: white;
+    border: none;
+    background-color: darkgreen;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+    box-shadow: 1px 1px 3px black;
+}
+
+button.loan,
+button.cancel,
+button.ok,
+button.incrButton,
+button.decrButton,
+button.finishGame {
+    width: 25vw;
+    margin: 1.5%;
+    padding: 2%;
+    font-size: 4vw;
+    color: white;
+    border: none;
+    background-color: darkgreen;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+    box-shadow: 1px 1px 3px black;
+}
+
+
+.gameContainer {
+    margin-top: 0;
+    z-index: 0;
+
+}
+
+button.move {
+    width: 15vw;
+    margin: 1.5%;
+    padding: 2%;
+    font-size: 4vw;
+    color: white;
+    border: none;
+    background-color: darkgreen;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+    box-shadow: 1px 1px 3px black;
+}
+
+.gameContainerBlurred {
+    margin-top: 0;
+    z-index: -1;
+    filter: blur(1.5rem);
+    position: absolute;
+    width: 100%;
+}
+
+
+button.incrButton,
+button.decrButton {
+    width: 40px;
+    height: 40px;
+    padding: auto;
+    background-color: white;
+    font-family: Roboto;
+    color: black;
+    display: block;
+    justify-content: space-between;
+}
+
+.counterWindow,
+.counterButtons {
+    display: inline-block;
+    width: 50%;
+    margin: auto;
+    height: 100px;
+
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 5vw;
+}
+
+.counterInfo {
+    height: auto;
+    justify-content: center;
+}

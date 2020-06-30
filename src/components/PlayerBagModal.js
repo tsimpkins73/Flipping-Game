@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/Gameview-Modals.css'
 
 export default class PlayerBagModal extends React.Component {
 

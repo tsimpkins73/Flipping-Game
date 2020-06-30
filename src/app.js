@@ -3,6 +3,8 @@ import React from 'react';
 import StartPage from './components/StartPage'
 import FinishPage from './components/FinishPage'
 import GameView from './components/GameView'
+import './css/index.css'
+import './css/StartPage.css'
 
 export default class App extends React.Component {
     constructor(props) {

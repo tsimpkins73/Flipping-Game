@@ -1,6 +1,7 @@
 import React from 'react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
+import '../css/Gameview-Modals.css'
 export default class BuyItemModal extends React.Component {
 
     constructor(props) {

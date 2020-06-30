@@ -6,6 +6,7 @@ import LocationModal from './LocationModal.js'
 import PlayerBagModal from './PlayerBagModal.js'
 import ItemLine from './ItemLine.js'
 import ItemButtons from './ItemButtons.js'
+import '../css/Gameview-Modals.css'
 
 export default class GameView extends React.Component {
 
@@ -21,42 +22,11 @@ export default class GameView extends React.Component {
     }
 
 /* 
-    componentWillMount = () => {
-        let newDay = this.props.currentDay;
-        console.log(newDay);
-        this.setState({
-            currentDay: newDay
-        });
-    }
-
-
-    componentWillReceiveProps(nextProps, prevState) {
-        if (nextProps.currentDay > this.state.currentDay) {
-            let itemsList = this.props.items.map(function (item) {
-                let priceMin = item.minPrice;
-                let priceMax = item.maxPrice;
-                function currentItemPrice(priceMin, priceMax) {
-                    return Math.floor(Math.random() * (priceMax - priceMin)) + priceMin;
-                };
-                let itemPrice = currentItemPrice(priceMin, priceMax);
-                let itemName = item.name;
-                return { name: itemName, price: itemPrice }
-            });
-            this.setState({
-                itemsList: itemsList,
-            });
-        }else{
-            this.setState({
-                itemsList: prevState.itemsList,
-            });
-        }
-    } */
-
-
     openBuyItemModal = (item) => {
         console.log('Open');
         this.props.openBuyItemModal(item);
     };
+*/ 
 
     finishGameButton = () => {
         console.log('Finish');
@@ -68,6 +38,7 @@ export default class GameView extends React.Component {
         console.log('Loan');
         this.props.openLoanModal();
     };
+     
 
     moveButton = () => {
         this.props.setGameview();
@@ -75,7 +46,7 @@ export default class GameView extends React.Component {
         this.props.openLocationModal();
     };
 
-    openPlayerBagModal = () => {
+   openPlayerBagModal = () => {
         this.props.setGameview();
         console.log('Move');
         this.props.openPlayerBagModal();

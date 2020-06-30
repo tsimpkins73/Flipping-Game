@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/LocationModal.css'
 
 export default class LocationModal extends React.Component {
 

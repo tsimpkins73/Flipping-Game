@@ -1,8 +1,5 @@
 import React from 'react'
-import BuyItemModal from './BuyItemModal.js'
-import LoanModal from './LoanModal.js'
-import LocationModal from './LocationModal.js'
-import { useState, useEffect, useRef } from 'react';
+import '../css/Gameview-Modals.css'
 
 export default class ItemButtons extends React.Component {
     constructor(props) {

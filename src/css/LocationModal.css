@@ -1,0 +1,51 @@
+.locationsContainer {
+    height: auto;
+}
+
+.location {
+    display: inline-grid;
+    width: -webkit-fill-available;
+    grid-template-columns: 4fr .5fr .5fr;
+    grid-column-gap: 7%;
+    justify-content: center;
+}
+
+.locationHeadline {
+    width: 100%;
+    margin: auto;
+    padding: 3% 0;
+    font-size: 7vw;
+    color: white;
+    border: none;
+    background-color: darkgreen;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+.locationList {
+    width: max-content;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    padding: 1px 0.5em;
+    float: left;
+    clear: both;
+    text-align: left;
+}
+
+.locationSelect {
+    display: inline-grid;
+    grid-template-columns: 1fr .5fr;
+    padding: 1px 0.5em;
+    float: right;
+    clear: both;
+}
+
+.selectLocationButton {
+    background: rgb(180, 219, 118);
+    margin: auto;
+    padding: 3%;
+    text-align: center;
+    font-size: 5vw;
+    border: 0;
+}

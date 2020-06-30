@@ -1,29 +1,12 @@
 import React from 'react'
-import ItemButtons from './ItemButtons.js'
-import LoanModal from './LoanModal.js'
-import LocationModal from './LocationModal.js'
+import '../css/Gameview-Modals.css'
 
 
 export default class ItemLine extends React.Component {
-    constructor(props) {
-        super(props);
-        
-        this.openBuyItemModal = this.openBuyItemModal.bind(this);
-      }
+ 
       componentDidMount = () => {
         this.props.setGameview();
     };
-
-
-openBuyItemModal = (item, price) => {
-    console.log('Open');
-    console.log(price);
-        this.props.openBuyItemModal(item, price);
-      };
-
-openSellItemModal = (item, price) => {
-          this.props.openSellItemModal(item, price);
-        };
 
     render() {
             let item =this.props.item;

@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/index.css'
 
 export default class StartPage extends React.Component {
 

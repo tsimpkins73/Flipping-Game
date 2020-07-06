@@ -60,7 +60,7 @@ handleChangeStart = () => {
         return ( <div className={(this.props.isActive) ? 'itemInfo' : 'hidden'}><h2 class="itemName">You currently owe ${this.props.loan}</h2>
                <section class="counter">How much do you want to pay on your loan?
                <div class= "counterInfo">
-                              <Slider min={0} max={this.props.funds} value={count} orientation="horizontal" step={1} onChangeStart={this.handleChangeStart} onChange={this.handleOnChange} onChangeComplete={this.handleChangeComplete} handleLabel={count}  />
+                              <Slider min={0} max={this.props.funds} value={count} orientation="horizontal" step={1} onChangeStart={this.handleChangeStart} onChange={this.handleOnChange} onChangeComplete={this.handleChangeComplete} />
                ${this.state.count}
                                              <div class= "counterInfo">
                 <button className="ok" id="ok" name="ok" value="ok" onClick={() => this.payLoan(this.state.count)}>OK</button>

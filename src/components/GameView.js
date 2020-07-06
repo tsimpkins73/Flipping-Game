@@ -7,6 +7,7 @@ import PlayerBagModal from './PlayerBagModal.js'
 import ItemLine from './ItemLine.js'
 import ItemButtons from './ItemButtons.js'
 import '../css/Gameview-Modals.css'
+import '../css/LocationModal.css'
 
 export default class GameView extends React.Component {
 
@@ -75,7 +76,7 @@ export default class GameView extends React.Component {
 
         return (<section className={(this.props.isActive) ? 'gameContainer' : 'hidden'} >
             <section className={(this.props.isBlurred ? 'gameContainerBlurred' : 'gameContainer')}>
-                <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30 <button className="playerItems" onClick={() => this.openPlayerBagModal()} name="buy" value="Buy">Your Items</button> </section>
+                <section className="playerInfo">Funds: ${funds} | Loan: ${loan} | Day: {day}/30<img src="/images/Case-Icon.svg" className="playerItems" onClick={() => this.openPlayerBagModal()} name="buy" value="Buy"></img></section>
                 <section className="locationHeadline">{location}</section>
                 <section className="items">
                     {this.props.items.map(function (item) {
@@ -86,9 +87,9 @@ export default class GameView extends React.Component {
                     })}
                 </section>
                 <section className="gameButtons">
-                    <button className={(this.props.isPayLoanButtonActive) ? 'loan' : 'hidden'} onClick={() => this.openLoanModal()} name="payLoan" value="Pay Loan">Pay Loan</button>
+                    <img src="/images/Loan-Icon.svg"className={(this.props.isPayLoanButtonActive) ? 'loan' : 'hidden'} onClick={() => this.openLoanModal()} name="payLoan" value="Pay Loan"></img>
                     <button className={(this.props.isFinishGameButtonActive) ? 'finishGame' : 'hidden'} onClick={() => this.finishGameButton()} name="finishGame" value="Finish Game">Finish Game</button>
-                    <button className={(this.props.isMoveButtonActive) ? 'move' : 'hidden'} onClick={() => this.moveButton()} name="move" value="Move">MOVE</button></section>
+                    <img src="/images/Move-Icon.svg"className={(this.props.isMoveButtonActive) ? 'move' : 'hidden'} onClick={() => this.moveButton()} name="move" value="Move"></img></section>
             </section>
             <BuyItemModal isActive={this.props.isBuyItemModalActive} playerItemsQuantityMax={this.props.playerItemsQuantityMax} items={this.props.items} funds={this.props.funds} cancelButton={cancelButton} itemToBuy={this.props.itemToBuy} playerItems={this.props.playerItems} selectedQuantity={this.props.selectedQuantity} increaseBuyQuantity={this.props.increaseBuyQuantity} decreaseQuantity={this.props.decreaseQuantity} addItem={this.props.addItem} />
             <LoanModal isActive={this.props.isLoanModalActive} loan={this.props.loan} cancelButton={cancelButton} increaseSellQuantity={this.props.increaseSellQuantity} decreaseQuantity={this.props.decreaseQuantity} funds={this.props.funds} payLoan={this.props.payLoan} />

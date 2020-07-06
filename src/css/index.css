@@ -142,12 +142,6 @@ h1 {
     text-align: left;
 }
 
-.itemName {
-    width: auto;
-    height: auto;
-    font-size: 5vw;
-    text-align: center;
-}
 
 
 .dotted {
@@ -162,8 +156,7 @@ h1 {
 .location,
 .gameButtons,
 .playerInfo,
-.items,
-.locationsContainer {
+.items {
     margin: auto;
     padding: 3%;
     text-align: center;

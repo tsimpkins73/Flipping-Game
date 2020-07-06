@@ -1,3 +1,90 @@
+@media screen and (min-width: 700px) {
+    .items {
+        width: 95%;
+    }
+
+}
+
+@media screen and (min-width: 1000px) {
+    section.items {
+        display: inline-grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        align-content: center;
+        grid-gap: 1em;
+        flex-wrap: wrap;
+        width: 80%;
+        flex-grow: 4;
+        justify-content: space-between;
+        font-size: 2.3vw;
+    }
+
+    button.buy,
+    button.sell {
+        width: 5vw;
+        margin: 1.5% auto;
+        padding: 2%;
+        font-size: 2vh;
+        align-content: center;
+
+    }
+
+    div.itemLineContainer {
+        display: inline-grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: .5fr .125fr;
+        row-gap: 15px;
+        min-height: 200px;
+        height: max-content;
+        width: 100%;
+        margin: auto;
+        padding: 3%;
+        flex-basis: 17%;
+        justify-content: center;
+        overflow-wrap: break-word;
+        background: rgb(216, 255, 152);
+        border-radius: 25px;
+        align-content: center;
+    }
+
+    div.itemLine {
+        display: inline-grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 14%;
+        align-self: baseline;
+        width: auto;
+        height: max-content;
+        overflow-wrap: break-word;
+        justify-items: center;
+    }
+
+    div.itemButtons {
+        display: inline-flex;
+        height: fit-content;
+    }
+
+    div.itemName {
+        max-width: 200px;
+        overflow-wrap: break-word;
+        width: 18vw;
+    }
+
+    div.right,
+    div.left {
+        display: inline-grid;
+        padding: 0;
+        width: 2em;
+        max-width: 200px;
+        background: rgb(216, 255, 152);
+        float: none;
+        justify-content: center;
+        white-space: normal;
+        overflow-wrap: break-word;
+
+    }
+}
+
 @keyframes bounceIn {
     0% {
         transform: scale(0.1);
@@ -86,7 +173,6 @@ h1 {
 .itemName {
     width: auto;
     height: auto;
-    font-size: 5vw;
     text-align: center;
 }
 
@@ -114,18 +200,17 @@ h1 {
     clear: both;
     justify-content: start;
     white-space: nowrap;
-
 }
 
-.location,
 .gameButtons,
-.playerInfo,
-.items,
-.locationsContainer {
+.items {
     margin: auto;
-    padding: 3%;
+    padding: 2%;
     text-align: center;
     font-size: 5vw;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-style: normal;
+
 }
 
 
@@ -136,6 +221,16 @@ h2 {
 
 .playerInfo {
     background: rgb(216, 255, 152);
+    display: flex;
+    font-size: 4vw;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 3%;
+    text-align: center;
+    font-family: 'bebas_neueregular', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: normal;
 }
 
 
@@ -193,24 +288,15 @@ h2 {
     }
 }
 
-button.playerItems {
-    width: 40vw;
-    margin: 2% auto;
-    padding: 4%;
-    font-size: 4vw;
-    color: white;
-    border: none;
-    background-color: darkgreen;
-    font-family: 'bebas_neueregular', Arial, sans-serif;
-    font-weight: bolder;
-    font-style: normal;
-    box-shadow: 1px 1px 3px black;
+.playerItems {
+    width: 10vw;
+    margin: 1%;
 }
 
 
 
-button.buy,
-button.sell {
+.buy,
+.sell {
     width: 15vw;
     margin: 1.5% auto;
     padding: 2%;
@@ -224,7 +310,15 @@ button.sell {
     box-shadow: 1px 1px 3px black;
 }
 
-button.loan,
+.loan,
+.move {
+    margin: 0;
+    padding: 0 10%;
+    height: 4em;
+    border: none;
+    text-shadow: 1px 1px 3px black;
+}
+
 button.cancel,
 button.ok,
 button.incrButton,
@@ -273,17 +367,6 @@ button.move {
 }
 
 
-button.incrButton,
-button.decrButton {
-    width: 40px;
-    height: 40px;
-    padding: auto;
-    background-color: white;
-    font-family: Roboto;
-    color: black;
-    display: block;
-    justify-content: space-between;
-}
 
 .counterWindow,
 .counterButtons {

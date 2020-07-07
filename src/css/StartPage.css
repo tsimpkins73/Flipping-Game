@@ -1,3 +1,26 @@
+@media screen and (min-width: 700px) {
+    section.mainSectionLanding {
+        padding: 10vh 2%;
+    }
+
+
+    h1#HeaderText{
+        font-size: 2em;
+    }
+
+    button.start {
+        width: 60vw;
+    font-size: 2vw;
+    padding: 1%;
+    }
+
+    p.introParagraph{
+        margin: 1%;
+        font-size: 100%;
+    }
+
+}
+
 .mainSectionLanding {
     margin: auto;
     padding: 20vh 2%;
@@ -33,7 +56,7 @@
     margin: 3%;
 }
 
-button.start {
+.start {
     width: 40vw;
     margin: auto;
     padding: 4%;

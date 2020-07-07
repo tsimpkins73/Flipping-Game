@@ -1,3 +1,5 @@
+
+
 @keyframes bounceIn {
     0% {
         transform: scale(0.1);
@@ -292,7 +294,7 @@ button.playerItems {
     box-shadow: 1px 1px 3px black;
 }
 
-button.start {
+.start {
     width: 40vw;
     margin: auto;
     padding: 4%;

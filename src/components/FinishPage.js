@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/StartPage.css'
 
 export default class FinishPage extends React.Component {
     

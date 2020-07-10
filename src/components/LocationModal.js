@@ -5,13 +5,11 @@ export default class LocationModal extends React.Component {
 
     
     changeLocation = (location) => {
-        console.log('THE NEW LOCATION IS' + location);
 this.props.changeLocation(location);
 };
 
 
 cancelButton = () => {
-console.log('CANCEL');
 this.props.cancelButton();
 };
 

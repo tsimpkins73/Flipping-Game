@@ -39,14 +39,12 @@ handleChangeStart = () => {
 
     sellItem = (quantity, totalPrice) => {
         let itemToSell = this.state.item;
-        console.log('ADD ITEM ' + itemToSell + " "  + quantity + " " + totalPrice);
-        this.props.sellItem(itemToSell, totalPrice, quantity);
+           this.props.sellItem(itemToSell, totalPrice, quantity);
         this.resetCount();
     };
 
     cancelButton = () => {
-        console.log('CANCEL');
-        this.props.cancelButton();
+             this.props.cancelButton();
         this.resetCount();
     };
 
@@ -59,8 +57,7 @@ handleChangeStart = () => {
 
 
     render() {
-        console.log(this.props.itemToSell);
-        let item = this.state.item;
+            let item = this.state.item;
         let newTotal = this.state.item.price * this.state.count;
         let maxAmount = this.state.item.quantity;
         let { count } = this.state;

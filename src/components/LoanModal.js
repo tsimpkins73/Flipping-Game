@@ -43,14 +43,12 @@ handleChangeStart = () => {
   };
 
     payLoan = (payment) => {
-                console.log('PAY ON LOAN $' + payment);
         this.props.payLoan(payment);
     };
 
 
     cancelButton = () => {
-        console.log('CANCEL');
-        this.props.cancelButton();
+         this.props.cancelButton();
     };  
 
 

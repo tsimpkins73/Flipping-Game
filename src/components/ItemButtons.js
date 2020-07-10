@@ -30,12 +30,10 @@ componentDidMount= () =>{
 
  
         openBuyItemModal = (item, price) => {
-       console.log(price);
         this.props.openBuyItemModal(item, price);
       };
 
 openSellItemModal = (item, price) => {
-    console.log(price);    
     this.props.openSellItemModal(item, price);
         };
 

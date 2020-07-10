@@ -26,14 +26,14 @@ export default class BuyItemModal extends React.Component {
 
 
     increaseButton = () => {
-        console.log('INCREASE');
+  
         this.setState(({ count }) => ({
             count: count + 1
         }));
     };
 
     decreaseButton = () => {
-        console.log('DECREASE');
+ 
         this.setState(({ count }) => ({
             count: count - 1
         }));
@@ -55,13 +55,12 @@ export default class BuyItemModal extends React.Component {
 
       addItem = (quantity, totalPrice) => {
         let itemToBuy = this.state.item;
-        console.log('ADD ITEM ' + itemToBuy + " " + quantity + " " + totalPrice);
-        this.props.addItem(itemToBuy, quantity, totalPrice);
+            this.props.addItem(itemToBuy, quantity, totalPrice);
         this.resetCount();
     };
 
     cancelButton = () => {
-        console.log('CANCEL');
+     
         this.props.cancelButton();
         this.resetCount();
     };

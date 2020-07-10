@@ -22,34 +22,24 @@ export default class GameView extends React.Component {
 
     }
 
-/* 
-    openBuyItemModal = (item) => {
-        console.log('Open');
-        this.props.openBuyItemModal(item);
-    };
-*/ 
 
     finishGameButton = () => {
-        console.log('Finish');
         this.props.finishGameButton();
     };
 
     openLoanModal = () => {
         this.props.setGameview();
-        console.log('Loan');
         this.props.openLoanModal();
     };
      
 
     moveButton = () => {
         this.props.setGameview();
-        console.log('Move');
         this.props.openLocationModal();
     };
 
    openPlayerBagModal = () => {
         this.props.setGameview();
-        console.log('Move');
         this.props.openPlayerBagModal();
     };
 
